@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqqg73bks4ko7"]
+
+[sub_resource type="Environment" id="Environment_ylnjw"]
+ambient_light_source = 2
+ambient_light_color = Color(0.43134, 0.43134, 0.43134, 1)
+
+[node name="EnviormentPreset" type="WorldEnvironment"]
+environment = SubResource("Environment_ylnjw")
