@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=19 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
-[ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/hack_menu/HackMenu.tscn" id="2_06rx1"]
+[ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
+[ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_jcjq6"]
+[ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
 
@@ -25,19 +27,78 @@ texture_filter = 0
 resource_local_to_scene = true
 material = SubResource("StandardMaterial3D_76tmv")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h7nl"]
+albedo_color = Color(0.162493, 0.000140205, 0.493031, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oe8hl"]
+albedo_color = Color(0.878878, 0.402338, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ildn4"]
+albedo_color = Color(0.332881, 0.332881, 0.332881, 1)
+
+[sub_resource type="Animation" id="Animation_ha47d"]
+length = 0.001
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_model/gun_model")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0)
+
+[sub_resource type="Animation" id="Animation_c0t2n"]
+resource_name = "recoil"
+length = 0.25
+step = 0.025
+tracks/0/type = "position_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("gun_model/gun_model")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.05, 1, 0, 0, 0.15856, 0.25, 1, 0, 0, 0)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("gun_model/gun_model")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.05, 1, 0.214053, 0, 0, 0.976822, 0.25, 1, 0, 0, 0, 1)
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n0wo8"]
+_data = {
+"RESET": SubResource("Animation_ha47d"),
+"recoil": SubResource("Animation_c0t2n")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0c2b"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wemd"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_5v085"]
+vertices = PackedVector3Array(-0.75, -0.56377, -4.75, -1, -0.56377, -6.75, -9.5, -0.56377, -9.5, -9.5, -0.56377, 9.5, 1, -0.56377, -7, 9.5, -0.56377, -9.5, 9.5, -0.56377, 9.5, 0.75, -0.56377, -4.75, 1.25, -0.56377, -5.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 1, 5), PackedInt32Array(5, 1, 2), PackedInt32Array(0, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(5, 8, 4), PackedInt32Array(8, 5, 7), PackedInt32Array(7, 5, 6)]
+
 [node name="NetGuner" type="CharacterBody3D"]
 script = ExtResource("1_jkax5")
+ram_indicator = ExtResource("4_1535y")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gsak8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 cull_mask = 1047553
 fov = 90.0
 
 [node name="RemoteTransform3D" type="RemoteTransform3D" parent="Camera3D"]
 remote_path = NodePath("../../pda/pda_model_view_port/SubViewport/Camera3D")
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+target_position = Vector3(0, -100, 0)
 
 [node name="pda" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730907, -2)
@@ -54,7 +115,7 @@ size = Vector2i(640, 480)
 render_target_update_mode = 4
 
 [node name="Camera3D" type="Camera3D" parent="pda/pda_model_view_port/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 cull_mask = 1047554
 fov = 90.0
 
@@ -89,49 +150,147 @@ render_target_update_mode = 4
 
 [node name="HackMenu" parent="pda/pda_model/pda_screen/SubViewport" instance=ExtResource("2_06rx1")]
 
-[node name="gun_action_pos" type="Node3D" parent="pda"]
-transform = Transform3D(0.836516, -0.258819, 0.482963, 0.0870968, 0.933013, 0.349144, -0.540976, -0.25, 0.803023, 0.8, -0.452, 1)
+[node name="gun" type="Node3D" parent="."]
 
-[node name="gun_rest_pos" type="Node3D" parent="pda"]
-transform = Transform3D(0.836516, -0.258819, 0.482963, 0.0870968, 0.933013, 0.349144, -0.540976, -0.25, 0.803023, 2, -1.376, 1)
+[node name="gun_action_pos" type="Node3D" parent="gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.278907, -0.518073)
 
-[node name="tutorial" type="Control" parent="."]
+[node name="gun_rest_pos" type="Node3D" parent="gun"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04259, -1.41495, -0.518073)
+
+[node name="gun_model" type="Node3D" parent="gun"]
+
+[node name="gun_model" type="CSGCombiner3D" parent="gun/gun_model"]
+layers = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.112171)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.216195)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.323569)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.435259)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.543983)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.619027)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_6h7nl")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.235826, -0.336002)
+size = Vector3(0.27, 0.319479, 0.795776)
+material = SubResource("StandardMaterial3D_oe8hl")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="gun/gun_model/gun_model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.70512)
+radius = 0.051451
+height = 0.686417
+material = SubResource("StandardMaterial3D_ildn4")
+
+[node name="muzle" type="Node3D" parent="gun/gun_model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.00663972, -1.19819)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="gun/gun_model"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_n0wo8")
+}
+
+[node name="hud" type="Control" parent="."]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
-offset_left = 320.0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="aim" type="CenterContainer" parent="hud"]
+layout_mode = 0
 offset_right = 640.0
-offset_bottom = 158.0
+offset_bottom = 480.0
 
-[node name="ColorRect" type="ColorRect" parent="tutorial"]
-layout_mode = 0
-offset_right = 320.0
-offset_bottom = 158.0
-color = Color(0, 0, 0, 0.498039)
+[node name="Label" type="Label" parent="hud/aim"]
+layout_mode = 2
+text = "[+]"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="tutorial"]
+[node name="able_to_hack_hint" type="RichTextLabel" parent="hud"]
 layout_mode = 0
-offset_right = 320.0
-offset_bottom = 162.0
+offset_left = 333.0
+offset_top = 249.0
+offset_right = 514.0
+offset_bottom = 284.0
+theme_override_fonts/normal_font = ExtResource("3_jcjq6")
+theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "[center]
-[[rainbow]AWSD[/rainbow]] walk and turn
-[[color=orange][wave]SHIFT[/wave][/color]] strafe
-[[color=red][shake]SPACE[/shake][/color]] select and shot
-[[color=purple][wave]E[/wave][/color]] use [color=yellow]PDA[/color]
+text = "[[color=purple][wave]E[/wave][/color]] to [shake][color=yellow]HACK[/color][/shake]"
 
-[/center]"
+[node name="VBoxContainer" type="VBoxContainer" parent="hud"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 397.0
+offset_right = 595.0
+offset_bottom = 480.0
+alignment = 1
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+[node name="healthBar" type="ProgressBar" parent="hud/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.813956, 0.764632, 0, 1)
+theme_override_fonts/font = ExtResource("3_jcjq6")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/background = SubResource("StyleBoxFlat_d0c2b")
+theme_override_styles/fill = SubResource("StyleBoxFlat_3wemd")
+value = 50.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="hud/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="ram" parent="hud/VBoxContainer/HBoxContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
+
+[node name="ram2" parent="hud/VBoxContainer/HBoxContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
+
+[node name="ram3" parent="hud/VBoxContainer/HBoxContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_5v085")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 top_level = true
 use_collision = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGCombiner3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 12)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56377, 0)
 size = Vector3(20, 1, 20)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -6)
 size = Vector3(1, 6, 1)

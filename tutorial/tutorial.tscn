@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://htm0lgxe7qor"]
+
+[ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="1_gylrx"]
+
+[node name="tutorial" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 480.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 640.0
+offset_bottom = 158.0
+color = Color(0, 0, 0, 0.498039)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 640.0
+offset_bottom = 158.0
+theme_override_fonts/normal_font = ExtResource("1_gylrx")
+bbcode_enabled = true
+text = "[center]
+[[rainbow]AWSD[/rainbow]] walk and turn
+[[color=orange][wave]SHIFT[/wave][/color]] strafe
+[[color=red][shake]SPACE[/shake][/color]] select and shot
+[[color=purple][wave]E[/wave][/color]] use [color=yellow]PDA[/color]
+[/center]"
