@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://bs481cposx423"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_27rre"]
+shading_mode = 0
+albedo_color = Color(0.294118, 0, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_x7q5x"]
+material = SubResource("StandardMaterial3D_27rre")
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 1
+
+[node name="Bullet" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_x7q5x")
