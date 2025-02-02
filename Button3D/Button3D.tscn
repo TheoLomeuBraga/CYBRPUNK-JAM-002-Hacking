@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c3kkvpy6sdxwc"]
+[gd_scene load_steps=8 format=3 uid="uid://c3kkvpy6sdxwc"]
 
 [ext_resource type="Script" path="res://Button3D/button_3d.gd" id="1_ogwr1"]
+[ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="2_v1t2k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nyhnw"]
 
@@ -14,17 +15,21 @@ emission_enabled = true
 emission = Color(1, 1, 0, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p2td1"]
-size = Vector3(6.735, 2.635, 1)
+resource_local_to_scene = true
+size = Vector3(5, 2, 1)
 
-[sub_resource type="TextMesh" id="TextMesh_m8oyo"]
-text = "Text"
-pixel_size = 0.2
-depth = 0.89
+[sub_resource type="TextMesh" id="TextMesh_4xmu3"]
+resource_local_to_scene = true
+text = "exit"
+font = ExtResource("2_v1t2k")
+pixel_size = 0.1
+depth = 0.1
 
 [node name="Button3d" type="Area3D"]
 script = ExtResource("1_ogwr1")
-shape = Vector3(6.735, 2.635, 1)
+shape = Vector3(5, 2, 1)
 text = "Text"
+font = ExtResource("2_v1t2k")
 pixel_size = 0.2
 font_depth = 0.89
 base_material = SubResource("StandardMaterial3D_nyhnw")
@@ -35,7 +40,7 @@ click_material = SubResource("StandardMaterial3D_dshrm")
 shape = SubResource("BoxShape3D_p2td1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("TextMesh_m8oyo")
+mesh = SubResource("TextMesh_4xmu3")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
