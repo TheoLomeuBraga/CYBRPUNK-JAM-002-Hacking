@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://d21cmlrkl5nal"]
+[gd_scene load_steps=15 format=3 uid="uid://d21cmlrkl5nal"]
 
 [ext_resource type="Texture2D" uid="uid://d36oi80hmex33" path="res://textures/asphalt.png" id="1_0xsej"]
 [ext_resource type="Texture2D" uid="uid://djp0xfdwykpoq" path="res://textures/bricks.png" id="2_k40lg"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_332h4"]
 [ext_resource type="PackedScene" uid="uid://c3kkvpy6sdxwc" path="res://Button3D/Button3D.tscn" id="4_fem2b"]
 [ext_resource type="Script" path="res://main_menu/start_button.gd" id="5_egiuf"]
+[ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="6_mi17y"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhnnh"]
 albedo_color = Color(0.355314, 0.355314, 0.355314, 1)
@@ -78,6 +79,7 @@ mesh = SubResource("TextMesh_0svai")
 [node name="start" parent="." instance=ExtResource("4_fem2b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, -9.99173)
 script = ExtResource("5_egiuf")
+start_sceane = ExtResource("6_mi17y")
 text = "start"
 font = null
 font_depth = 0.1

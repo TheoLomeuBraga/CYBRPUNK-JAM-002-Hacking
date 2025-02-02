@@ -11,8 +11,15 @@ func grab_foucus_first_button() -> void:
 		c.grab_focus()
 		break
 
+signal hack
+
+func call_hack(hack_name: String) -> void:
+	hack.emit(hack_name)
+
 func _ready() -> void:
 	grab_foucus_first_button()
+	for c in $VBoxContainer/HBoxContainer/VBoxContainer.get_children():
+		c.hack.connect(call_hack)
 
 func _process(delta: float) -> void:
 	if not has_button_foucus():
