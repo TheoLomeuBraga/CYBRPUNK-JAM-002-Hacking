@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36oi80hmex33"
-path="res://.godot/imported/asphalt.png-ac61e7ecbfd4001b91872200a6ce765b.ctex"
+uid="uid://djp0xfdwykpoq"
+path="res://.godot/imported/bricks.png-a0775033759a7921da292bc521dc5a56.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://textures/asphalt.png"
-dest_files=["res://.godot/imported/asphalt.png-ac61e7ecbfd4001b91872200a6ce765b.ctex"]
+source_file="res://textures/bricks.png"
+dest_files=["res://.godot/imported/bricks.png-a0775033759a7921da292bc521dc5a56.ctex"]
 
 [params]
 
