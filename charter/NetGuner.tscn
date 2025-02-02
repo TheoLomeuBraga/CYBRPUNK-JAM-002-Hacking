@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://801dg8820s8q"]
+
+[ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
+[ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/hack_menu/HackMenu.tscn" id="2_06rx1"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63i0w"]
+albedo_color = Color(0.329158, 0.329158, 0.329158, 1)
+emission_enabled = true
+texture_filter = 0
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rqg6v"]
+viewport_path = NodePath("pda/pda_model/pda_screen/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76tmv"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_rqg6v")
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_operator = 1
+texture_filter = 0
+
+[sub_resource type="QuadMesh" id="QuadMesh_34yec"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_76tmv")
+
+[node name="NetGuner" type="CharacterBody3D"]
+script = ExtResource("1_jkax5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gsak8")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+cull_mask = 1047553
+fov = 90.0
+
+[node name="RemoteTransform3D" type="RemoteTransform3D" parent="Camera3D"]
+remote_path = NodePath("../../pda/pda_model_view_port/SubViewport/Camera3D")
+
+[node name="pda" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730907, -2)
+
+[node name="pda_model_view_port" type="SubViewportContainer" parent="pda"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewport" type="SubViewport" parent="pda/pda_model_view_port"]
+transparent_bg = true
+handle_input_locally = false
+use_hdr_2d = true
+size = Vector2i(640, 480)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="pda/pda_model_view_port/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+cull_mask = 1047554
+fov = 90.0
+
+[node name="pda_model" type="CSGCombiner3D" parent="pda"]
+transform = Transform3D(0.836516, -0.258819, 0.482963, 0.0870968, 0.933013, 0.349144, -0.540976, -0.25, 0.803023, -0.734759, -0.376047, 1)
+layers = 2
+material_override = SubResource("StandardMaterial3D_63i0w")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="pda/pda_model"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 0, 0)
+layers = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="pda/pda_model"]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 0.1, 0, 0, 0.133705)
+layers = 2
+operation = 2
+
+[node name="pda_screen" type="MeshInstance3D" parent="pda/pda_model"]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0.0865631)
+layers = 2
+mesh = SubResource("QuadMesh_34yec")
+
+[node name="SubViewport" type="SubViewport" parent="pda/pda_model/pda_screen"]
+size = Vector2i(224, 256)
+render_target_update_mode = 4
+
+[node name="HackMenu" parent="pda/pda_model/pda_screen/SubViewport" instance=ExtResource("2_06rx1")]
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+top_level = true
+use_collision = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 12)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56377, 0)
+size = Vector3(20, 1, 20)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -6)
+size = Vector3(1, 6, 1)
