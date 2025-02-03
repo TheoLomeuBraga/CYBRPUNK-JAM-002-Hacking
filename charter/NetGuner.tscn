@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=19 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
+[ext_resource type="PackedScene" uid="uid://bs481cposx423" path="res://charter/bullet/Bullet.tscn" id="3_3baql"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_jcjq6"]
 [ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
 
@@ -81,6 +82,7 @@ bg_color = Color(1, 0, 0, 1)
 script = ExtResource("1_jkax5")
 ram_indicator = ExtResource("4_1535y")
 max_ram_unitys = 2
+bullet_sceane = ExtResource("3_3baql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gsak8")
@@ -98,6 +100,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 
 target_position = Vector3(0, -100, 0)
 
 [node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
+
+[node name="muzle" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="pda" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730907, -2)
@@ -158,6 +163,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.278907, -0.518073)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.04259, -1.41495, -0.518073)
 
 [node name="gun_model" type="Node3D" parent="gun"]
+
+[node name="display_muzle" type="Node3D" parent="gun/gun_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.14638)
 
 [node name="gun_model" type="CSGCombiner3D" parent="gun/gun_model"]
 layers = 2

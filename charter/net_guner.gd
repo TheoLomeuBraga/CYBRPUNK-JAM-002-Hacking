@@ -70,7 +70,16 @@ func make_haker_stuf(hack_name : String) -> void:
 		ram-=1
 		print("hack_name: ",hack_name)
 
+@export var health : int = 50 :
+	get():
+		return health
+	set(value):
+		health = value
+		$hud/VBoxContainer/healthBar.value = value
+
 func _ready() -> void:
+	
+	Global.player = self
 	
 	max_ram_unitys = max_ram_unitys
 	ram = ram
@@ -85,6 +94,7 @@ func pda_mode(delta: float) -> void:
 	gun.position = gun.position.move_toward($gun/gun_rest_pos.position,delta * 50)
 
 
+@export var bullet_sceane : PackedScene
 
 func gun_mode(delta: float) -> void:
 	
@@ -110,6 +120,13 @@ func gun_mode(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_accept") and not $gun/gun_model/AnimationPlayer.is_playing():
 		$gun/gun_model/AnimationPlayer.play("recoil")
+		
+		var b : Node3D = bullet_sceane.instantiate()
+		get_parent().add_child(b)
+		b.global_position = $Camera3D/muzle.global_position
+		#b.get_node("model").global_position = $gun/gun_model/display_muzle.global_position
+		 
+		b.global_rotation = $Camera3D/muzle.global_rotation
 	
 	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider().has_method("hack") and $Camera3D/RayCast3D.get_collider().has_method("get_hack_list"):
 		target_raycast_node = $Camera3D/RayCast3D.get_collider()
@@ -118,11 +135,12 @@ func gun_mode(delta: float) -> void:
 		for h : Hack in target_raycast_node.get_hack_list():
 			$pda/pda_model/pda_screen/SubViewport/HackMenu.add_hack_button(h.hack_name,h.hack_text,h.hack_color)
 		
+		$hud/able_to_hack_hint.visible = target_raycast_node.get_hack_list().size() > 0
+		
 	else:
 		$pda/pda_model/pda_screen/SubViewport/HackMenu.clean_hack_buttons()
 		target_raycast_node = null
-	
-	$hud/able_to_hack_hint.visible = target_raycast_node != null
+		$hud/able_to_hack_hint.visible = false
 
 func nothing_mode(delta: float) -> void:
 	

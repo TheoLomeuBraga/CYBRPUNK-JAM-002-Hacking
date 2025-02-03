@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-EnviormentPreset="*res://enviorment_preset/EnviormentPreset.tscn"
+Global="*res://global/Global.tscn"
 
 [display]
 

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ip0qa3e2f6vs"]
+
+[ext_resource type="Script" path="res://global/global.gd" id="1_aof6r"]
+
+[sub_resource type="Environment" id="Environment_ylnjw"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(0.444203, 0.392316, 0.605944, 1)
+glow_enabled = true
+glow_bloom = 0.5
+
+[node name="Global" type="Node"]
+script = ExtResource("1_aof6r")
+
+[node name="EnviormentPreset" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ylnjw")
