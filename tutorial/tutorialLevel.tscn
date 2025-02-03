@@ -46,10 +46,10 @@ navigation_mesh = SubResource("NavigationMesh_pxmwa")
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 12)
 
 [node name="HackableDoor" parent="NavigationRegion3D" instance=ExtResource("1_w5o0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25127, -9.51733)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25127, -10.5173)
 
 [node name="HackableDoor2" parent="NavigationRegion3D" instance=ExtResource("1_w5o0u")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25127, -41.5173)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25127, -42.5173)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 top_level = true
@@ -124,8 +124,22 @@ flip_faces = true
 size = Vector3(19, 1, 43)
 material = ExtResource("5_gi0f8")
 
+[node name="CSGBox3D12" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, -63)
+operation = 2
+flip_faces = true
+size = Vector3(13, 11, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D13" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 4, -71)
+operation = 2
+flip_faces = true
+size = Vector3(13, 11, 1)
+material = ExtResource("5_gi0f8")
+
 [node name="HealDispenser" parent="NavigationRegion3D" instance=ExtResource("7_fc0jp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -40)
 
 [node name="Node3D" parent="." instance=ExtResource("7_xdmu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

@@ -24,8 +24,12 @@ offset_bottom = 158.0
 theme_override_fonts/normal_font = ExtResource("1_gylrx")
 bbcode_enabled = true
 text = "[center]
+
 [[rainbow]AWSD[/rainbow]] walk and turn
+
 [[color=orange][wave]SHIFT[/wave][/color]] strafe
+
 [[color=red][shake]SPACE[/shake][/color]] select and shot
+
 [[color=purple][wave]E[/wave][/color]] use [color=yellow]PDA[/color]
 [/center]"

@@ -42,21 +42,25 @@ var game_mode : int = 3
 		elif ram > max_ram_unitys:
 			ram = max_ram_unitys
 		
-		var i : int = 0
-		var chiltrem_count : int = $hud/VBoxContainer/CenterContainer/GridContainer.get_child_count()
+		if $hud/minimal_ram != null:
+			$hud/minimal_ram.value = ram * 100
 		
-		
-		for c in $hud/VBoxContainer/CenterContainer/GridContainer.get_children():
+		if $hud/VBoxContainer/CenterContainer/GridContainer != null:
+			var i : int = 0
+			var chiltrem_count : int = $hud/VBoxContainer/CenterContainer/GridContainer.get_child_count()
 			
-			if c is ProgressBar:
-				if i < int(ram):
-					c.value = 100
-				elif i > int(ram):
-					c.value = 0
-				else:
-					c.value = (ram - int(ram)) * 100
+			
+			for c in $hud/VBoxContainer/CenterContainer/GridContainer.get_children():
 				
-				i+=1
+				if c is ProgressBar:
+					if i < int(ram):
+						c.value = 100
+					elif i > int(ram):
+						c.value = 0
+					else:
+						c.value = (ram - int(ram)) * 100
+					
+					i+=1
 
 @export var ram_regeneration_speed : float = 0.1
 
@@ -127,6 +131,8 @@ func gun_mode(delta: float) -> void:
 		#b.get_node("model").global_position = $gun/gun_model/display_muzle.global_position
 		 
 		b.global_rotation = $Camera3D/muzle.global_rotation
+		
+		$gun_shot.play()
 	
 	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider().has_method("hack") and $Camera3D/RayCast3D.get_collider().has_method("get_hack_list"):
 		target_raycast_node = $Camera3D/RayCast3D.get_collider()

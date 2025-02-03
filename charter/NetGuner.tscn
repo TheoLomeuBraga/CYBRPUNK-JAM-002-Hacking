@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=22 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
 [ext_resource type="PackedScene" uid="uid://bs481cposx423" path="res://charter/bullet/Bullet.tscn" id="3_3baql"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_jcjq6"]
 [ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
+[ext_resource type="AudioStream" uid="uid://c4ye6k10pv4gr" path="res://sfx/Retro Weapon Gun LoFi 03.wav" id="5_nmv2i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
 
@@ -72,6 +73,22 @@ _data = {
 "recoil": SubResource("Animation_c0t2n")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3bx0w"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_radius_bottom_right = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4e4wn"]
+bg_color = Color(0, 0.52549, 1, 1)
+border_width_left = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d0c2b"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -82,6 +99,7 @@ bg_color = Color(1, 0, 0, 1)
 script = ExtResource("1_jkax5")
 ram_indicator = ExtResource("4_1535y")
 max_ram_unitys = 2
+ram = 2.0
 bullet_sceane = ExtResource("3_3baql")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -225,6 +243,11 @@ libraries = {
 "": SubResource("AnimationLibrary_n0wo8")
 }
 
+[node name="gun_shot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_nmv2i")
+volume_db = -10.0
+pitch_scale = 2.0
+
 [node name="hud" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
@@ -242,6 +265,20 @@ layout_mode = 2
 text = "[+]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="minimal_ram" type="ProgressBar" parent="hud"]
+offset_left = 297.0
+offset_top = 234.0
+offset_right = 306.0
+offset_bottom = 249.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_jcjq6")
+theme_override_font_sizes/font_size = 20
+theme_override_styles/background = SubResource("StyleBoxFlat_3bx0w")
+theme_override_styles/fill = SubResource("StyleBoxFlat_4e4wn")
+value = 50.0
+fill_mode = 3
+show_percentage = false
 
 [node name="able_to_hack_hint" type="RichTextLabel" parent="hud"]
 visible = false
