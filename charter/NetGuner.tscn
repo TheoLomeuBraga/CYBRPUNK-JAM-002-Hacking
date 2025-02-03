@@ -267,6 +267,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="minimal_ram" type="ProgressBar" parent="hud"]
+layout_mode = 0
 offset_left = 297.0
 offset_top = 234.0
 offset_right = 306.0
