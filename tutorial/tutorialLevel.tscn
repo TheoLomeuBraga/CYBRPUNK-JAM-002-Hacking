@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=3 uid="uid://8wptunxgcbai"]
+
+[ext_resource type="PackedScene" uid="uid://htm0lgxe7qor" path="res://tutorial/tutorial.tscn" id="1_dwugb"]
+[ext_resource type="PackedScene" uid="uid://bbemm7c6bb16t" path="res://assets/hackable_door/hackable_door.tscn" id="1_w5o0u"]
+[ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="2_qqjjw"]
+[ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="2_rqqdp"]
+[ext_resource type="Material" uid="uid://dfvfw546vit4b" path="res://tutorial/material/pink.tres" id="4_t8km2"]
+[ext_resource type="Material" uid="uid://cx2vq0dfgvlae" path="res://tutorial/material/purple.tres" id="5_gi0f8"]
+[ext_resource type="PackedScene" uid="uid://c5hj3ooxnyr6j" path="res://charter/pda/PdaPowerUp.tscn" id="7_xdmu6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hesev"]
+albedo_color = Color(1, 1, 0.443137, 1)
+emission_enabled = true
+emission = Color(1, 1, 0, 1)
+
+[sub_resource type="TextMesh" id="TextMesh_yvhnc"]
+material = SubResource("StandardMaterial3D_hesev")
+text = "Arbitrary 
+Malware 
+Execution
+"
+font = ExtResource("2_rqqdp")
+pixel_size = 0.075
+depth = 0.2
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_pxmwa"]
+vertices = PackedVector3Array(-0.75, -0.56377, -4.75, -1, -0.56377, -6.75, -9.5, -0.56377, -9.5, -9.5, -0.56377, 9.5, 1, -0.56377, -7, 9.5, -0.56377, -9.5, 9.5, -0.56377, 9.5, 0.75, -0.56377, -4.75, 1.25, -0.56377, -5.25)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 1, 5), PackedInt32Array(5, 1, 2), PackedInt32Array(0, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(5, 8, 4), PackedInt32Array(8, 5, 7), PackedInt32Array(7, 5, 6)]
+
+[node name="TutorialLevel" type="Node3D"]
+
+[node name="tutorial" parent="." instance=ExtResource("1_dwugb")]
+
+[node name="NetGuner" parent="." instance=ExtResource("2_qqjjw")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+
+[node name="logo" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.50235, 2, 0.3005)
+mesh = SubResource("TextMesh_yvhnc")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_pxmwa")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
+top_level = true
+use_collision = true
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 12)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56377, 0)
+size = Vector3(20, 1, 20)
+material = ExtResource("4_t8km2")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 1.5, -9)
+size = Vector3(9, 6, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, -9)
+size = Vector3(9, 6, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -9)
+size = Vector3(3, 2, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 9)
+size = Vector3(21, 7, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 1, -1)
+size = Vector3(21, 7, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -10, 1, -1)
+size = Vector3(21, 7, 1)
+material = ExtResource("5_gi0f8")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+size = Vector3(21, 1, 19)
+material = ExtResource("4_t8km2")
+
+[node name="HackableDoor" parent="NavigationRegion3D/CSGCombiner3D" instance=ExtResource("1_w5o0u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+
+[node name="Node3D" parent="." instance=ExtResource("7_xdmu6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

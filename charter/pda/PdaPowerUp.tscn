@@ -1,0 +1,130 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5hj3ooxnyr6j"]
+
+[ext_resource type="Script" path="res://charter/pda/pda_power_up.gd" id="1_mudk3"]
+[ext_resource type="AudioStream" uid="uid://boi6nihnfq5px" path="res://sfx/Retro Ascending Long 06.wav" id="2_jm2yu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_gpkgm"]
+radius = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tw7jh"]
+albedo_color = Color(0.162493, 0.000140205, 0.493031, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rx64u"]
+albedo_color = Color(0.878878, 0.402338, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdksp"]
+albedo_color = Color(0.332881, 0.332881, 0.332881, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uf1tx"]
+albedo_color = Color(0.29219, 0.29219, 0.29219, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e8gwp"]
+albedo_color = Color(0.329158, 0.329158, 0.329158, 1)
+emission_enabled = true
+texture_filter = 0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74pkj"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_r3h82"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_74pkj")
+
+[node name="PdaPowerUp" type="Node3D"]
+script = ExtResource("1_mudk3")
+
+[node name="ShapeCast3D" type="ShapeCast3D" parent="."]
+shape = SubResource("SphereShape3D_gpkgm")
+target_position = Vector3(0, 0, 0)
+
+[node name="gun_model" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.12941, 0.866025, 0.482963, -0.224144, 0.5, -0.836516, -0.965926, 0, 0.258819, -0.620316, 0, 0.207749)
+layers = 2
+
+[node name="CSGBox3D" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, 0)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.112171)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.216195)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.323569)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.435259)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.543983)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.866025, -0.5, 0, 0.5, 0.866025, 0, 0, -0.619027)
+size = Vector3(0.2, 0.3, 0.1)
+material = SubResource("StandardMaterial3D_tw7jh")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.235826, -0.336002)
+size = Vector3(0.27, 0.319479, 0.795776)
+material = SubResource("StandardMaterial3D_rx64u")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -0.70512)
+radius = 0.051451
+height = 0.686417
+material = SubResource("StandardMaterial3D_cdksp")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00234985, -0.300293, 0.0345359)
+size = Vector3(0.225525, 0.399414, 0.574707)
+material = SubResource("StandardMaterial3D_uf1tx")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00234985, -0.624823, 0.725388)
+size = Vector3(0.225525, 0.517944, 0.267456)
+material = SubResource("StandardMaterial3D_uf1tx")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="gun_model"]
+transform = Transform3D(1, 0, 0, 0, 0.82266, -0.568533, 0, 0.568533, 0.82266, 0.00234985, -0.513144, 0.411942)
+size = Vector3(0.225525, 0.330444, 0.68396)
+material = SubResource("StandardMaterial3D_uf1tx")
+
+[node name="PdaPowerUp" type="CSGCombiner3D" parent="."]
+transform = Transform3D(0.963956, 0.266061, 0, -0.266061, 0.963956, 0, 0, 0, 1, 0.755731, 0, 0)
+layers = 2
+material_override = SubResource("StandardMaterial3D_e8gwp")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="PdaPowerUp"]
+transform = Transform3D(0.8, 0, 0, 0, 1, 0, 0, 0, 0.2, 0, 0, 0)
+layers = 2
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="PdaPowerUp"]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 0.1, 0, 0, 0.133705)
+layers = 2
+operation = 2
+
+[node name="pda_screen" type="MeshInstance3D" parent="PdaPowerUp"]
+transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0.0865631)
+layers = 2
+mesh = SubResource("QuadMesh_r3h82")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("2_jm2yu")
+pitch_scale = 1.5
+
+[connection signal="finished" from="AudioStreamPlayer3D" to="." method="_on_audio_stream_player_3d_finished"]

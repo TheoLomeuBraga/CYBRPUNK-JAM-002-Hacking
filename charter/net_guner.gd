@@ -1,10 +1,10 @@
 extends CharacterBody3D
-
+class_name NetGuner
 
 @export var speed : float = 5.0
 @export var rotate_speed : float = 100.0
 
-var game_mode : int = 1
+var game_mode : int = 3
 
 @onready var pda : Node3D = $pda/pda_model
 @onready var gun : Node3D = $gun/gun_model
@@ -21,14 +21,14 @@ var game_mode : int = 1
 	set(value):
 		max_ram_unitys = value
 		
-		if $hud/VBoxContainer/HBoxContainer != null:
-			for c in $hud/VBoxContainer/HBoxContainer.get_children():
-				$hud/VBoxContainer/HBoxContainer.remove_child(c)
+		if $hud/VBoxContainer/CenterContainer/GridContainer != null:
+			for c in $hud/VBoxContainer/CenterContainer/GridContainer.get_children():
+				$hud/VBoxContainer/CenterContainer/GridContainer.remove_child(c)
 				c.queue_free()
 			
 			for i in max_ram_unitys:
 				var v : ProgressBar = ram_indicator.instantiate()
-				$hud/VBoxContainer/HBoxContainer.add_child(v)
+				$hud/VBoxContainer/CenterContainer/GridContainer.add_child(v)
 				v.value = 0
 
 @export var ram : float = 3.0:
@@ -43,10 +43,10 @@ var game_mode : int = 1
 			ram = max_ram_unitys
 		
 		var i : int = 0
-		var chiltrem_count : int = $hud/VBoxContainer/HBoxContainer.get_child_count()
+		var chiltrem_count : int = $hud/VBoxContainer/CenterContainer/GridContainer.get_child_count()
 		
 		
-		for c in $hud/VBoxContainer/HBoxContainer.get_children():
+		for c in $hud/VBoxContainer/CenterContainer/GridContainer.get_children():
 			
 			if c is ProgressBar:
 				if i < int(ram):
@@ -63,10 +63,12 @@ var game_mode : int = 1
 var target_raycast_node : Node
 
 func make_haker_stuf(hack_name : String) -> void:
-	print("hack_name: ",hack_name)
 	
-	if target_raycast_node != null:
+	
+	if target_raycast_node != null and ram > 1:
 		target_raycast_node.hack(hack_name)
+		ram-=1
+		print("hack_name: ",hack_name)
 
 func _ready() -> void:
 	
@@ -122,7 +124,27 @@ func gun_mode(delta: float) -> void:
 	
 	$hud/able_to_hack_hint.visible = target_raycast_node != null
 
-
+func nothing_mode(delta: float) -> void:
+	
+	Engine.set_time_scale(1.0)
+	pda.position = pda.position.move_toward($pda/pda_rest_pos.position,delta * 10)
+	gun.position = gun.position.move_toward($gun/gun_rest_pos.position,delta * 10)
+	
+	var input_dir := Input.get_vector("left", "right", "front", "back")
+	
+	if not Input.is_action_pressed("strafe"):
+		rotation_degrees.y -= input_dir.x * delta * rotate_speed
+		input_dir.x = 0
+	
+	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if direction:
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+	else:
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.z = move_toward(velocity.z, 0, speed)
+	
+	move_and_slide()
 
 func _physics_process(delta: float) -> void:
 	ram += delta * ram_regeneration_speed
@@ -130,6 +152,8 @@ func _physics_process(delta: float) -> void:
 		pda_mode(delta)
 	elif game_mode == 1:
 		gun_mode(delta)
+	elif game_mode == 3:
+		nothing_mode(delta)
 	
 	if not swich_bloked and Input.is_action_just_pressed("swich_mode"):
 		if game_mode == 0:

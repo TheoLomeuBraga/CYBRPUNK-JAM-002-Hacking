@@ -1,10 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=18 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_jcjq6"]
 [ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
-[ext_resource type="PackedScene" uid="uid://bbemm7c6bb16t" path="res://assets/hackable_door/hackable_door.tscn" id="5_24n7r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
 
@@ -16,7 +15,7 @@ texture_filter = 0
 [sub_resource type="ViewportTexture" id="ViewportTexture_rqg6v"]
 viewport_path = NodePath("pda/pda_model/pda_screen/SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76tmv"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3l8a"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_rqg6v")
 emission_enabled = true
@@ -26,7 +25,7 @@ texture_filter = 0
 
 [sub_resource type="QuadMesh" id="QuadMesh_34yec"]
 resource_local_to_scene = true
-material = SubResource("StandardMaterial3D_76tmv")
+material = SubResource("StandardMaterial3D_o3l8a")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6h7nl"]
 albedo_color = Color(0.162493, 0.000140205, 0.493031, 1)
@@ -78,13 +77,10 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3wemd"]
 bg_color = Color(1, 0, 0, 1)
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_5v085"]
-vertices = PackedVector3Array(-0.75, -0.56377, -4.75, -1, -0.56377, -6.75, -9.5, -0.56377, -9.5, -9.5, -0.56377, 9.5, 1, -0.56377, -7, 9.5, -0.56377, -9.5, 9.5, -0.56377, 9.5, 0.75, -0.56377, -4.75, 1.25, -0.56377, -5.25)
-polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(4, 1, 5), PackedInt32Array(5, 1, 2), PackedInt32Array(0, 7, 3), PackedInt32Array(3, 7, 6), PackedInt32Array(5, 8, 4), PackedInt32Array(8, 5, 7), PackedInt32Array(7, 5, 6)]
-
 [node name="NetGuner" type="CharacterBody3D"]
 script = ExtResource("1_jkax5")
 ram_indicator = ExtResource("4_1535y")
+max_ram_unitys = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gsak8")
@@ -100,6 +96,8 @@ remote_path = NodePath("../../pda/pda_model_view_port/SubViewport/Camera3D")
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -100, 0)
+
+[node name="AudioListener3D" type="AudioListener3D" parent="Camera3D"]
 
 [node name="pda" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.730907, -2)
@@ -251,9 +249,9 @@ text = "[[color=purple][wave]E[/wave][/color]] to [shake][color=yellow]HACK[/col
 
 [node name="VBoxContainer" type="VBoxContainer" parent="hud"]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 397.0
-offset_right = 595.0
+offset_left = 172.0
+offset_top = 340.0
+offset_right = 465.0
 offset_bottom = 480.0
 alignment = 1
 
@@ -266,44 +264,33 @@ theme_override_styles/background = SubResource("StyleBoxFlat_d0c2b")
 theme_override_styles/fill = SubResource("StyleBoxFlat_3wemd")
 value = 50.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="hud/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="ram" parent="hud/VBoxContainer/HBoxContainer" instance=ExtResource("4_1535y")]
+[node name="CenterContainer" type="CenterContainer" parent="hud/VBoxContainer"]
 layout_mode = 2
 
-[node name="ram2" parent="hud/VBoxContainer/HBoxContainer" instance=ExtResource("4_1535y")]
+[node name="GridContainer" type="GridContainer" parent="hud/VBoxContainer/CenterContainer"]
+layout_mode = 2
+columns = 4
+
+[node name="ram" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
 layout_mode = 2
 
-[node name="ram3" parent="hud/VBoxContainer/HBoxContainer" instance=ExtResource("4_1535y")]
+[node name="ram2" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
 layout_mode = 2
 
-[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
-navigation_mesh = SubResource("NavigationMesh_5v085")
+[node name="ram3" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
 
-[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
-top_level = true
-use_collision = true
+[node name="ram4" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 12)
+[node name="ram5" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56377, 0)
-size = Vector3(20, 1, 20)
+[node name="ram6" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, -9)
-size = Vector3(1, 6, 1)
+[node name="ram7" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
 
-[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -9)
-size = Vector3(1, 6, 1)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -9)
-size = Vector3(5, 1, 1)
-
-[node name="HackableDoor" parent="NavigationRegion3D/CSGCombiner3D" instance=ExtResource("5_24n7r")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+[node name="ram8" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
+layout_mode = 2
