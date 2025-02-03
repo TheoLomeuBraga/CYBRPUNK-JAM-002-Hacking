@@ -60,8 +60,13 @@ var game_mode : int = 1
 
 @export var ram_regeneration_speed : float = 0.1
 
+var target_raycast_node : Node
+
 func make_haker_stuf(hack_name : String) -> void:
 	print("hack_name: ",hack_name)
+	
+	if target_raycast_node != null:
+		target_raycast_node.hack(hack_name)
 
 func _ready() -> void:
 	
@@ -72,11 +77,15 @@ func _ready() -> void:
 	$pda/pda_model/pda_screen/SubViewport/HackMenu.hack.connect(make_haker_stuf)
 
 func pda_mode(delta: float) -> void:
+	$hud/able_to_hack_hint.visible = false
 	Engine.set_time_scale(0.1)
 	pda.position = pda.position.move_toward($pda/pda_action_pos.position,delta * 50)
 	gun.position = gun.position.move_toward($gun/gun_rest_pos.position,delta * 50)
 
+
+
 func gun_mode(delta: float) -> void:
+	
 	Engine.set_time_scale(1.0)
 	pda.position = pda.position.move_toward($pda/pda_rest_pos.position,delta * 10)
 	gun.position = gun.position.move_toward($gun/gun_action_pos.position,delta * 10)
@@ -100,6 +109,18 @@ func gun_mode(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and not $gun/gun_model/AnimationPlayer.is_playing():
 		$gun/gun_model/AnimationPlayer.play("recoil")
 	
+	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider().has_method("hack") and $Camera3D/RayCast3D.get_collider().has_method("get_hack_list"):
+		target_raycast_node = $Camera3D/RayCast3D.get_collider()
+		
+		$pda/pda_model/pda_screen/SubViewport/HackMenu.clean_hack_buttons()
+		for h : Hack in target_raycast_node.get_hack_list():
+			$pda/pda_model/pda_screen/SubViewport/HackMenu.add_hack_button(h.hack_name,h.hack_text,h.hack_color)
+		
+	else:
+		$pda/pda_model/pda_screen/SubViewport/HackMenu.clean_hack_buttons()
+		target_raycast_node = null
+	
+	$hud/able_to_hack_hint.visible = target_raycast_node != null
 
 
 

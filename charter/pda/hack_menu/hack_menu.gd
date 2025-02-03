@@ -16,7 +16,7 @@ signal hack
 func call_hack(hack_name: String) -> void:
 	hack.emit(hack_name)
 
-func clear_hack_buttons() -> void:
+func clean_hack_buttons() -> void:
 	$VBoxContainer/HBoxContainer.visible = false
 	$VBoxContainer/noHackWarning.visible = true
 	
@@ -46,7 +46,7 @@ func connect_hacks() -> void:
 
 func _ready() -> void:
 	
-	clear_hack_buttons()
+	clean_hack_buttons()
 	
 	#add_hack_button("hack_1","hack 1",Color.RED)
 	#add_hack_button("hack_2","hack 2",Color.GREEN)

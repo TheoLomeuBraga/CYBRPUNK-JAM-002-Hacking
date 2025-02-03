@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=20 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_jcjq6"]
 [ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
+[ext_resource type="PackedScene" uid="uid://bbemm7c6bb16t" path="res://assets/hackable_door/hackable_door.tscn" id="5_24n7r"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
 
@@ -237,6 +238,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="able_to_hack_hint" type="RichTextLabel" parent="hud"]
+visible = false
 layout_mode = 0
 offset_left = 333.0
 offset_top = 249.0
@@ -292,5 +294,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.56377, 0)
 size = Vector3(20, 1, 20)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, -9)
 size = Vector3(1, 6, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, -9)
+size = Vector3(1, 6, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -9)
+size = Vector3(5, 1, 1)
+
+[node name="HackableDoor" parent="NavigationRegion3D/CSGCombiner3D" instance=ExtResource("5_24n7r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
