@@ -106,8 +106,6 @@ var death : bool = false
 
 func action_mode(delta: float) -> void:
 	
-	
-	
 	$NavigationAgent3D.target_position = Global.player.global_position
 	
 	var target_direction_rotation : Vector3 = target_direction
@@ -125,6 +123,8 @@ func action_mode(delta: float) -> void:
 	if can_shoot:
 		shot()
 	
+	
+	
 	move_and_slide()
 
 @export var hacks : Array[Hack]
@@ -132,7 +132,7 @@ func action_mode(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if not Engine.is_editor_hint():
+	if not Engine.is_editor_hint() and not death:
 		
 		if gamemode_colors_array.size() > enemy_type:
 			outline_color =  gamemode_colors_array[enemy_type]
@@ -153,15 +153,17 @@ func explode() -> void:
 	$explosionSound.pitch_scale = rng.randf_range(0.5,1.5)
 	$explosionSound.play()
 
+func die() -> void:
+	death = true
+	explode()
 
 func get_shot() -> void:
 	if true:
-		explode()
+		die()
 
 func hack(hack_name : String) -> void:
 	if hack_name == "kill":
-		death = true
-		explode()
+		die()
 
 func get_hack_list() -> Array[Hack]:
 	var ha : Array[Hack]

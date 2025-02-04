@@ -20,4 +20,4 @@ func get_hack_list() -> Array[Hack]:
 		return []
 
 func _physics_process(delta: float) -> void:
-	$heal_model.rotate_y(delta * 2)
+	$heal_model.rotation.y += delta * 5

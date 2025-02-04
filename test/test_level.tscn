@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cwfvd0xn75w35"]
+[gd_scene load_steps=16 format=3 uid="uid://cwfvd0xn75w35"]
 
 [ext_resource type="PackedScene" uid="uid://htm0lgxe7qor" path="res://tutorial/tutorial.tscn" id="1_6sax1"]
 [ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="2_nb7c2"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cekkdbv72wq6d" path="res://assets/heal_dispenser/heal_dispenser.tscn" id="5_fmuhr"]
 [ext_resource type="PackedScene" uid="uid://bkarfeh4sm0d2" path="res://enemy/enemy.tscn" id="6_4xdgt"]
 [ext_resource type="Shader" path="res://shaders/diterring_glow.gdshader" id="7_cykt3"]
+[ext_resource type="PackedScene" uid="uid://bmwvwdli70twn" path="res://assets/ram/max_ram_up.tscn" id="8_6b0dh"]
+[ext_resource type="PackedScene" uid="uid://chf8byyu42esr" path="res://assets/ram/ram_pick_up.tscn" id="9_8pi3k"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_pxmwa"]
 vertices = PackedVector3Array(-8.75, 0, -27.75, -8.75, 0, 8.75, 9, 0, 8.75, 9, 0, -27.75)
@@ -112,3 +114,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -24)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
 shape = SubResource("BoxShape3D_m0nnn")
+
+[node name="MaxRamUp" parent="." instance=ExtResource("8_6b0dh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1102, 0.5, -3.48737)
+
+[node name="HealDispenser" parent="." instance=ExtResource("5_fmuhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -24)
+
+[node name="RamPickUp" parent="." instance=ExtResource("9_8pi3k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -4)

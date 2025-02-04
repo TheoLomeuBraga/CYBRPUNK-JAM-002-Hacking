@@ -9,7 +9,7 @@ uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
 const vec3 magic = vec3(0.06711056f, 0.00583715f, 52.9829189f);
 
 void fragment() {
-	ALBEDO = color.rgb;
+	ALBEDO = vec3(0.0,0.0,0.0);
 	EMISSION = (color.rgb) * emission_energy;
 
 	ALBEDO.rgb = color.rgb;
