@@ -89,7 +89,6 @@ func action_mode(delta: float) -> void:
 	target_direction_rotation.y = global_position.y
 	
 	look_at(Global.player.global_position,Vector3.UP)
-	print(delta)
 	
 	if global_position.distance_to(Global.player.global_position) > 2.5:
 		walk_animation_speed = 1
