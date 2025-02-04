@@ -72,6 +72,8 @@ enum EnemyTypes {
 
 @export var enemy_type : EnemyTypes
 
+@export var bullet : PackedScene
+
 func action_mode(delta: float) -> void:
 	walk_animation_speed = 0
 	velocity = Vector3.ZERO
