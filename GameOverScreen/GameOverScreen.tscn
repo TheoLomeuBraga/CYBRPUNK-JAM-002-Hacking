@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhoaotm666wt7"]
+
+[ext_resource type="Script" path="res://GameOverScreen/game_over_screen.gd" id="1_0ndre"]
+[ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="1_oqheu"]
+[ext_resource type="PackedScene" uid="uid://8wptunxgcbai" path="res://tutorial/tutorialLevel.tscn" id="2_bjn2e"]
+
+[node name="GameOverScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0ndre")
+first_area = ExtResource("2_bjn2e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+color = Color(0.211765, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_oqheu")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center][color=red][shake]Game Over
+[/shake][/color][/center]"
+fit_content = true
+
+[node name="again" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_oqheu")
+theme_override_font_sizes/font_size = 50
+text = "again
+"
+
+[connection signal="pressed" from="VBoxContainer/again" to="." method="_on_again_pressed"]

@@ -185,8 +185,12 @@ func _physics_process(delta: float) -> void:
 		elif game_mode == 1:
 			game_mode = 0
 
+@export var game_over_sceane :PackedScene
 
-
+func get_shot() -> void:
+	health -= 10
+	if health <= 0:
+		get_tree().change_scene_to_packed(game_over_sceane)
 
 
 

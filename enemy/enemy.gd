@@ -87,10 +87,13 @@ func _physics_process(delta: float) -> void:
 		elif game_mode == 1:
 			action_mode(delta)
 
+var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 func explode() -> void:
 	$death_explosion.emitting = true
 	$template_psx_charter.visible = false
 	$CollisionShape3D.disabled = true
+	
+	$AudioStreamPlayer3D.pitch_scale = rng.randf_range(0.5,1.5)
 	$AudioStreamPlayer3D.play()
 
 func get_shot() -> void:
