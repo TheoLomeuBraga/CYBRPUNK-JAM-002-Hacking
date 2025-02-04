@@ -12,11 +12,12 @@ metallic = 1.0
 metallic_specular = 1.0
 roughness = 0.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_1trk7"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1enyo"]
+resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("2_78q4i")
-shader_parameter/color = Color(1, 1, 1, 0.25098)
-shader_parameter/emission_energy = 1.0
+shader_parameter/color = Color(1, 1, 1, 0.52549)
+shader_parameter/emission_energy = null
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_vpliu"]
 
@@ -45,6 +46,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_6m1wf"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Plane_003"
 _surfaces = [{
 "aabb": AABB(-0.445746, -0.500759, -0.75955, 0.891493, 1.36774, 0.95891),
@@ -64,7 +66,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 312,
 "index_data": PackedByteArray("IgAJAAcAIgAcAAkAAgAQAA4ADwAVABsADwASABUAGgAdACMAGgAUAB0ABgAIACYACwAyACoACwAeADIAFgATAC4AEQA9AC0AEQADAD0AJwApADkAJwAKACkAHwAxADUAHwAXADEAKwBFAEEAKwAzAEUANABnAEYANABrAGcAYAA0AC8ANABuAGsANABgAG4ALABPAEMALAA8AE8AOAA/AEsAOAAoAD8AQABZAFYAQABEAFkAQgBTAFgAQgBOAFMASgBVAF0ASgA+AFUAVABSAFwAVABXAFIAdwBxAHQAcQB6AH0AcQB3AHoARwBhADAAZABHAGgARwBkAGEAbABfAHsAewBfAHAAZQB4AHUAZQBpAHgAXgBjAG8AbwBjAHMAagB8AHkAagBtAHwAYgB2AHIAYgBmAHYAIAB/AIoAIAAFAH8AAAAMAIIADQCHAIQADQAZAIcAGACLAIYAGAAhAIsABAAkAH4AgQCYAIwAgQCQAJgAiACUAIUAgwA7AAEAgwCTADsAJQCPAIAAJQA3AI8AjQCXAIkAjQCbAJcAkQCjAJkAkQCfAKMAmgCsAJUAmgC7AKwAswCaAKQAmgC4ALsAmgCzALgAkgBNADoAkgChAE0ANgCdAI4ANgBJAJ0AngCrAKIAngCoAKsAoABRAEwAoACqAFEASACnAJwASABbAKcApgBQAKkApgBaAFAAvQDDAMAAwwDKAMcAwwC9AMoApQCwALQAsACWAK0ApQCWALAAvADLAK8ArwDLAL8AtQDIALkAtQDEAMgArgC+ALIAsgC+AMIAtwDJALoAtwDGAMkAsQDFALYAsQDBAMUA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -99,6 +101,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rvcgv"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_010"
 _surfaces = [{
 "aabb": AABB(-0.04, -0.0811561, -0.04, 0.08, 0.167556, 0.08),
@@ -118,7 +121,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 72,
 "index_data": PackedByteArray("AgALAAUAAgAIAAsABgAVAAkABgASABUAFAARABcAFAAOABEADAAEABAADAAAAAQAAwAWAA8AAwAKABYABwANABMABwABAA0AGgAjACAAGgAdACMAHgAtACoAHgAhAC0ALAApACYALAAvACkAJAAcABgAJAAoABwAGwAuACIAGwAnAC4AHwAlABkAHwArACUA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -153,6 +156,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2bcsr"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_009"
 _surfaces = [{
 "aabb": AABB(-0.00185821, -0.0585938, -0.0572849, 0.149556, 0.0958031, 0.11457),
@@ -172,7 +176,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("AgALAAgAAgAFAAsABgAZABQABgAKABkAGgAfACUAGgASAB8ADAAEAAAADAARAAQABwANAAEABwAVAA0AGAADABAAGAAJAAMAJAAhAB4AJAAnACEAFwAmACMAFwAbACYAEwAdACAAEwAPAB0ADgAiABwADgAWACIA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -207,6 +211,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_sd5qt"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_008"
 _surfaces = [{
 "aabb": AABB(-0.262704, -0.0378776, -0.0910144, 0.263065, 0.0757553, 0.112127),
@@ -226,7 +231,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("AgALAAUAAgAIAAsAGQAWAB0AGQATABYAFAARABcAFAAOABEAIAADACQAIAAAAAMAGAAMABIAGAAhAAwAHgAEAAkAHgAnAAQAFQAlABwAFQAPACUABgAjABoABgABACMADQAmABAADQAiACYABwAfAAoABwAbAB8A"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -261,6 +266,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_qkwq0"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_007"
 _surfaces = [{
 "aabb": AABB(-0.25, -0.0420863, -0.0804468, 0.326946, 0.0841725, 0.130447),
@@ -280,7 +286,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAAKAAcAAAADAAoABgAVABIABgAJABUAFAARAA4AFAAXABEADQAFAAIADQAQAAUACAAMAAEACAATAAwAFgAEAA8AFgALAAQA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -315,6 +321,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_8i3md"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_0092"
 _surfaces = [{
 "aabb": AABB(-0.00185821, -0.0585938, -0.0572849, 0.149556, 0.0958031, 0.11457),
@@ -334,7 +341,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("AgALAAgAAgAFAAsABgAZABQABgAKABkAGgAfACUAGgASAB8ADAAEAAAADAARAAQABwANAAEABwAVAA0AGAADABAAGAAJAAMAJAAhAB4AJAAnACEAFwAmACMAFwAbACYAEwAdACAAEwAPAB0ADgAiABwADgAWACIA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -369,6 +376,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2s3px"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_0082"
 _surfaces = [{
 "aabb": AABB(-0.262704, -0.0378776, -0.0910144, 0.263065, 0.0757553, 0.112127),
@@ -388,7 +396,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("AgALAAUAAgAIAAsAGQAWAB0AGQATABYAFAARABcAFAAOABEAIAADACQAIAAAAAMAGAAMABIAGAAhAAwAHgAEAAkAHgAnAAQAFQAlABwAFQAPACUABgAjABoABgABACMADQAmABAADQAiACYABwAfAAoABwAbAB8A"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -423,6 +431,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_e0fg4"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_0072"
 _surfaces = [{
 "aabb": AABB(-0.25, -0.0420863, -0.0804468, 0.326946, 0.0841725, 0.130447),
@@ -442,7 +451,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray("AAAKAAcAAAADAAoABgAVABIABgAJABUAFAARAA4AFAAXABEADQAFAAIADQAQAAUACAAMAAEACAATAAwAFgAEAA8AFgALAAQA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -477,6 +486,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3t6mn"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube"
 _surfaces = [{
 "aabb": AABB(-0.154405, -0.206008, -0.0988498, 0.30881, 0.327449, 0.205655),
@@ -496,7 +506,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 96,
 "index_data": PackedByteArray("IgAaACQAIgAPABoAJgAVACoAJgAbABUAKQAHAB8AKQAUAAcACgAQAAIACgAWABAAGQAGABMAGQAOAAYAEQAeAAMAEQAoAB4AGAArABIAGAAnACsACwAlABcACwAjACUAIAA2AA0AIAA4ADYAOgAxADcAOgA+ADEAPQAFADAAPQAdAAUACAAsADIACAAAACwANQAEAAwANQAvAAQALQAcADwALQABABwANAA/ADsANAAuAD8ACQA5ACEACQAzADkA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -531,6 +541,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_7gyme"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_001"
 _surfaces = [{
 "aabb": AABB(-0.188636, -0.0337965, -0.121953, 0.377271, 0.229557, 0.22289),
@@ -550,7 +561,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("FAAMABYAFAAHAAwAGAAKABsAGAANAAoAGQADABAAGQAJAAMACwACAAgACwAGAAIAGgAVABcAGgARABUAEgAgAAUAEgAiACAAJAAeACEAJAAnAB4AJQABAB0AJQAOAAEAHwAAAAQAHwAcAAAAJgATAA8AJgAjABMA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -585,6 +596,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_vnuli"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_005"
 _surfaces = [{
 "aabb": AABB(-0.075, -0.193906, -0.111751, 0.15, 0.443906, 0.186751),
@@ -604,7 +616,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("GwALAB8AGwAFAAsAHQAVACEAHQAJABUAIwARACcAIwAXABEAJQADABkAJQAPAAMABwANAAEABwATAA0AFgAEABAAFgAKAAQADAAYAAAADAAkABgAFAAmAA4AFAAiACYABgAgABIABgAcACAAAgAeAAgAAgAaAB4AQwAzAC0AQwBHADMARQA9ADEARQBJAD0ASwA5AD8ASwBPADkATQArADcATQBBACsALwA1ADsALwApADUAPgAsADIAPgA4ACwANABAAEwANAAoAEAAPABOAEoAPAA2AE4ALgBIAEQALgA6AEgAKgBGAEIAKgAwAEYA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -639,6 +651,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_ps4m6"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_006"
 _surfaces = [{
 "aabb": AABB(-0.0978351, -0.154834, -0.138599, 0.19567, 0.472412, 0.213599),
@@ -658,7 +671,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 72,
 "index_data": PackedByteArray("AQAKAAYAAQAFAAoACAAWABMACAALABYAFAARAA4AFAAXABEADAADAAAADAAPAAMABwANAAIABwASAA0AFQAEABAAFQAJAAQAGgAjAB0AGgAgACMAHwAtACEAHwArAC0ALAAnAC4ALAAlACcAJgAbACgAJgAZABsAHgAkACoAHgAYACQALwAcACIALwApABwA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -693,6 +706,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_70btb"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_0052"
 _surfaces = [{
 "aabb": AABB(-0.075, -0.193906, -0.111751, 0.15, 0.443906, 0.186751),
@@ -712,7 +726,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("GwALAB8AGwAFAAsAHQAVACEAHQAJABUAIwARACcAIwAXABEAJQADABkAJQAPAAMABwANAAEABwATAA0AFgAEABAAFgAKAAQADAAYAAAADAAkABgAFAAmAA4AFAAiACYABgAgABIABgAcACAAAgAeAAgAAgAaAB4AQwAzAC0AQwBHADMARQA9ADEARQBJAD0ASwA5AD8ASwBPADkATQArADcATQBBACsALwA1ADsALwApADUAPgAsADIAPgA4ACwANABAAEwANAAoAEAAPABOAEoAPAA2AE4ALgBIAEQALgA6AEgAKgBGAEIAKgAwAEYA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -747,6 +761,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_udwuc"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_0062"
 _surfaces = [{
 "aabb": AABB(-0.0978351, -0.154834, -0.138599, 0.19567, 0.472412, 0.213599),
@@ -766,7 +781,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 72,
 "index_data": PackedByteArray("AQAKAAYAAQAFAAoACAAWABMACAALABYAFAARAA4AFAAXABEADAADAAAADAAPAAMABwANAAIABwASAA0AFQAEABAAFQAJAAQAGgAjAB0AGgAgACMAHwAtACEAHwArAC0ALAAnAC4ALAAlACcAJgAbACgAJgAZABsAHgAkACoAHgAYACQALwAcACIALwApABwA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -801,6 +816,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3h5nc"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_002"
 _surfaces = [{
 "aabb": AABB(-0.200591, -0.183545, -0.142788, 0.401182, 0.151906, 0.218812),
@@ -820,7 +836,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 60,
 "index_data": PackedByteArray("BwAJAAMABwAMAAkACAARAAIACAAaABEADQAbAAoADQAYABsABgAXAAsABgAVABcAGQAUABAAGQAWABQABQAdACAABQABAB0AHAAPACYAHAAAAA8AIQAnACQAIQAeACcABAAjABMABAAfACMAJQASACIAJQAOABIA"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -855,6 +871,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_hpm0g"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_004"
 _surfaces = [{
 "aabb": AABB(-0.08, -0.0435179, -0.06023, 0.16, 0.151099, 0.307078),
@@ -874,7 +891,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AgANAAkAAgAGAA0ABwAYABUABwAKABgAFwAUABAAFwAbABQADwADAAEADwARAAMACAAOAAAACAAWAA4ADAAeACEADAAFAB4AJgAdACMAJgAgAB0ABAAiABwABAASACIAGQAfACUAGQALAB8AEwAnACQAEwAaACcAKgA1AC4AKgAxADUALwBAADIALwA9AEAAPwA8AEMAPwA4ADwANwArADkANwApACsAMAA2AD4AMAAoADYANABGAC0ANABJAEYATgBFAEgATgBLAEUALABKADoALABEAEoAQQBHADMAQQBNAEcAOwBPAEIAOwBMAE8A"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -909,6 +926,7 @@ _surfaces = [{
 blend_shape_mode = 0
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_syxfr"]
+resource_local_to_scene = true
 resource_name = "template_psx_charter_Cube_0042"
 _surfaces = [{
 "aabb": AABB(-0.08, -0.0435179, -0.06023, 0.16, 0.151099, 0.307078),
@@ -928,7 +946,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 120,
 "index_data": PackedByteArray("AgANAAkAAgAGAA0ABwAYABUABwAKABgAFwAUABAAFwAbABQADwADAAEADwARAAMACAAOAAAACAAWAA4ADAAeACEADAAFAB4AJgAdACMAJgAgAB0ABAAiABwABAASACIAGQAfACUAGQALAB8AEwAnACQAEwAaACcAKgA1AC4AKgAxADUALwBAADIALwA9AEAAPwA8AEMAPwA4ADwANwArADkANwApACsAMAA2AD4AMAAoADYANABGAC0ANABJAEYATgBFAEgATgBLAEUALABKADoALABEAEoAQQBHADMAQQBNAEcAOwBPAEIAOwBMAE8A"),
-"material": SubResource("ShaderMaterial_1trk7"),
+"material": SubResource("ShaderMaterial_1enyo"),
 "name": "black",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -11856,10 +11874,10 @@ height = 0.2
 [node name="Enemy" type="CharacterBody3D"]
 script = ExtResource("1_6htyl")
 base_material = SubResource("StandardMaterial3D_s3dih")
-outline_material = SubResource("ShaderMaterial_1trk7")
+outline_material = SubResource("ShaderMaterial_1enyo")
 walk_animation_speed = 1.0
 bullet = ExtResource("3_t1kt7")
-gamemode_colors_array = Array[Color]([Color(1, 1, 1, 0.25098), Color(0, 0, 0.8, 0.858824), Color(1, 0.647059, 0, 0.0980392), Color(0.870588, 0, 0, 0.898039)])
+gamemode_colors_array = Array[Color]([Color(1, 1, 1, 0.25098), Color(0, 0, 0.8, 0.858824), Color(1, 1, 0, 0.478431), Color(0.870588, 0, 0, 0.898039)])
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 avoidance_enabled = true
@@ -11880,7 +11898,7 @@ bones/0/name = "spine"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 0.848849, -0.528636, 0, 0.528636, 0.848848, 0, 1.0099, -0.0552)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.923381, -0.1552)
+bones/0/position = Vector3(-2.69915e-19, 1.00925, -0.155159)
 bones/0/rotation = Quaternion(0.27491, 0, 0, 0.96147)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "spine.001"
@@ -12028,14 +12046,14 @@ bones/21/parent = 0
 bones/21/rest = Transform3D(1, 0, 0, 0, -0.796068, -0.605208, 0, 0.605208, -0.796068, 0.098, -0.00561721, 0.0539195)
 bones/21/enabled = true
 bones/21/position = Vector3(0.098, -0.00561721, 0.0539195)
-bones/21/rotation = Quaternion(0.789459, -2.2867e-09, -2.09278e-08, 0.613804)
+bones/21/rotation = Quaternion(0.880098, 9.87289e-09, -2.21866e-08, 0.474792)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "shin.L"
 bones/22/parent = 21
 bones/22/rest = Transform3D(1, 0, 0, 0, 0.981658, -0.190652, 0, 0.190652, 0.981658, 0, 0.441337, 0)
 bones/22/enabled = true
 bones/22/position = Vector3(0, 0.441337, 0)
-bones/22/rotation = Quaternion(0.329851, -2.15262e-15, -3.98128e-16, 0.944033)
+bones/22/rotation = Quaternion(0.628553, -3.64073e-15, 1.43055e-15, 0.777767)
 bones/22/scale = Vector3(1, 1, 1)
 bones/23/name = "Cube.006"
 bones/23/parent = 22
@@ -12056,14 +12074,14 @@ bones/25/parent = 0
 bones/25/rest = Transform3D(1, 0, 0, 0, -0.796068, -0.605208, 0, 0.605208, -0.796068, -0.098, -0.00561721, 0.0539195)
 bones/25/enabled = true
 bones/25/position = Vector3(-0.098, -0.00561721, 0.0539195)
-bones/25/rotation = Quaternion(0.984376, -2.79428e-09, -1.95458e-08, 0.176081)
+bones/25/rotation = Quaternion(0.890306, -7.72357e-09, -2.08933e-08, 0.455363)
 bones/25/scale = Vector3(1, 1, 1)
 bones/26/name = "shin.R"
 bones/26/parent = 25
 bones/26/rest = Transform3D(1, 0, 0, 0, 0.981658, -0.190652, 0, 0.190652, 0.981658, 0, 0.441337, 0)
 bones/26/enabled = true
 bones/26/position = Vector3(0, 0.441337, 0)
-bones/26/rotation = Quaternion(0.247939, 9.37985e-16, 2.03125e-16, 0.968776)
+bones/26/rotation = Quaternion(0.306534, -6.36216e-16, 4.96445e-16, 0.95186)
 bones/26/scale = Vector3(1, 1, 1)
 bones/27/name = "Cube.008"
 bones/27/parent = 26
@@ -12090,7 +12108,7 @@ bones/30/name = "foot.R"
 bones/30/parent = -1
 bones/30/rest = Transform3D(1, 0, 0, 0, -0.529999, -0.847998, 0, 0.847998, -0.529999, -0.098, 0.0852, -0.0162)
 bones/30/enabled = true
-bones/30/position = Vector3(-0.098, 0.111652, -0.495396)
+bones/30/position = Vector3(-0.098, 0.125918, -0.0507307)
 bones/30/rotation = Quaternion(0.873639, 4.01202e-19, 2.22365e-19, 0.486574)
 bones/30/scale = Vector3(1, 1, 0.999999)
 bones/31/name = "Cube.005"
@@ -12104,8 +12122,8 @@ bones/32/name = "foot.L"
 bones/32/parent = -1
 bones/32/rest = Transform3D(1, 0, 0, 0, -0.529999, -0.847998, 0, 0.847998, -0.529999, 0.098, 0.0852, -0.0162)
 bones/32/enabled = true
-bones/32/position = Vector3(0.098, 0.119396, 0.235092)
-bones/32/rotation = Quaternion(0.808076, 1.02735e-17, 5.69406e-18, 0.589078)
+bones/32/position = Vector3(0.098, 0.302868, -0.290676)
+bones/32/rotation = Quaternion(0.990649, -7.52652e-17, -4.17156e-17, 0.136433)
 bones/32/scale = Vector3(1, 1, 0.999999)
 bones/33/name = "Cube.001"
 bones/33/parent = 32
@@ -12118,19 +12136,19 @@ bones/34/name = "leg_ik.L"
 bones/34/parent = -1
 bones/34/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, 0.098, 0.5372, 1.0286)
 bones/34/enabled = true
-bones/34/position = Vector3(0.098, 0.5372, 3.6596)
+bones/34/position = Vector3(0.098, 0.5372, 4.08929)
 bones/34/rotation = Quaternion(0.707107, -1.37679e-07, -1.37679e-07, 0.707107)
 bones/34/scale = Vector3(1, 1, 1)
 bones/35/name = "leg_ik.R"
 bones/35/parent = -1
 bones/35/rest = Transform3D(1, 0, -3.89414e-07, -3.89414e-07, 0, -1, 0, 1, 0, -0.098, 0.5372, 1.0286)
 bones/35/enabled = true
-bones/35/position = Vector3(-0.098, 0.5372, 3.6596)
+bones/35/position = Vector3(-0.098, 0.5372, 4.08929)
 bones/35/rotation = Quaternion(0.707107, -1.37679e-07, -1.37679e-07, 0.707107)
 bones/35/scale = Vector3(1, 1, 1)
 
 [node name="head_1_001" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(0.3, 8.51093e-15, 2.27374e-13, -8.40769e-15, 0.3, 9.63919e-09, -2.27374e-13, -9.63919e-09, 0.3, 8.50777e-14, 1.675, -0.0329276)
+transform = Transform3D(0.3, 8.51093e-15, 2.27374e-13, -8.40769e-15, 0.3, 9.63919e-09, -2.27374e-13, -9.63919e-09, 0.3, 8.50774e-14, 1.76087, -0.0328867)
 bone_name = "head_1.001"
 bone_idx = 5
 
@@ -12139,7 +12157,7 @@ mesh = SubResource("ArrayMesh_6m1wf")
 skeleton = NodePath("")
 
 [node name="Cube_016" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, 5.17364e-14, -1.27898e-13, -5.10703e-14, 1, -1.19209e-07, 1.42109e-13, 1.19209e-07, 1, 8.88178e-16, 1.56065, -0.146913)
+transform = Transform3D(1, 5.17364e-14, -1.27898e-13, -5.10703e-14, 1, -1.19209e-07, 1.42109e-13, 1.19209e-07, 1, 8.87908e-16, 1.64652, -0.146873)
 bone_name = "Cube.016"
 bone_idx = 6
 
@@ -12148,7 +12166,7 @@ mesh = SubResource("ArrayMesh_rvcgv")
 skeleton = NodePath("")
 
 [node name="Cube_012" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(0.173647, 0.984808, 7.55768e-07, -0.892539, 0.157377, 0.42262, 0.416199, -0.0733873, 0.906307, 0.266384, 1.08534, -0.223943)
+transform = Transform3D(0.173647, 0.984808, 7.55768e-07, -0.892539, 0.157377, 0.42262, 0.416199, -0.0733873, 0.906307, 0.266384, 1.17121, -0.223902)
 bone_name = "Cube.012"
 bone_idx = 10
 
@@ -12157,7 +12175,7 @@ mesh = SubResource("ArrayMesh_2bcsr")
 skeleton = NodePath("")
 
 [node name="Cube_011" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(0.173647, 0.984808, 7.7486e-07, -0.892539, 0.157377, 0.42262, 0.4162, -0.0733873, 0.906307, 0.266549, 1.08559, -0.221166)
+transform = Transform3D(0.173647, 0.984808, 7.7486e-07, -0.892539, 0.157377, 0.42262, 0.4162, -0.0733873, 0.906307, 0.266549, 1.17147, -0.221125)
 bone_name = "Cube.011"
 bone_idx = 11
 
@@ -12166,7 +12184,7 @@ mesh = SubResource("ArrayMesh_sd5qt")
 skeleton = NodePath("")
 
 [node name="Cube_010" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(0.171274, 0.985215, -0.00405764, -0.769631, 0.131222, -0.624859, -0.615088, 0.110145, 0.780727, 0.207497, 1.32886, -0.288646)
+transform = Transform3D(0.171274, 0.985215, -0.00405764, -0.769631, 0.131222, -0.624859, -0.615088, 0.110145, 0.780727, 0.207497, 1.41473, -0.288606)
 bone_name = "Cube.010"
 bone_idx = 12
 
@@ -12175,7 +12193,7 @@ mesh = SubResource("ArrayMesh_qkwq0")
 skeleton = NodePath("")
 
 [node name="Cube_015" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(-4.83124e-08, -1, -3.82774e-07, -0.0871549, -3.85568e-07, 0.996195, 0.996195, 8.4241e-08, 0.0871548, -0.166002, 1.43164, 0.448322)
+transform = Transform3D(-4.83124e-08, -1, -3.82774e-07, -0.0871549, -3.85568e-07, 0.996195, 0.996195, 8.4241e-08, 0.0871548, -0.166002, 1.51752, 0.448363)
 bone_name = "Cube.015"
 bone_idx = 16
 
@@ -12184,7 +12202,7 @@ mesh = SubResource("ArrayMesh_8i3md")
 skeleton = NodePath("")
 
 [node name="Cube_014" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(2.12807e-07, -1, -4.23752e-07, -0.0871547, -4.42378e-07, 0.996195, 0.996195, 2.52854e-07, 0.0871547, -0.166002, 1.43418, 0.4495)
+transform = Transform3D(2.12807e-07, -1, -4.23752e-07, -0.0871547, -4.42378e-07, 0.996195, 0.996195, 2.52854e-07, 0.0871547, -0.166002, 1.52005, 0.449541)
 bone_name = "Cube.014"
 bone_idx = 17
 
@@ -12193,7 +12211,7 @@ mesh = SubResource("ArrayMesh_2s3px")
 skeleton = NodePath("")
 
 [node name="Cube_013" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(0.00236012, -0.999997, -2.80812e-05, -0.0636976, -0.000178348, 0.997969, 0.997966, 0.00235353, 0.0636978, -0.166186, 1.46207, 0.109522)
+transform = Transform3D(0.00236012, -0.999997, -2.80812e-05, -0.0636976, -0.000178348, 0.997969, 0.997966, 0.00235353, 0.0636978, -0.166186, 1.54795, 0.109563)
 bone_name = "Cube.013"
 bone_idx = 18
 
@@ -12202,7 +12220,7 @@ mesh = SubResource("ArrayMesh_e0fg4")
 skeleton = NodePath("")
 
 [node name="Cube" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, 2.29507e-07, -2.47007e-07, -2.29507e-07, 1, 1.8999e-07, 2.47007e-07, -1.8999e-07, 1, -1.65547e-14, 1.40868, -0.1)
+transform = Transform3D(1, 2.29507e-07, -2.47007e-07, -2.29507e-07, 1, 1.8999e-07, 2.47007e-07, -1.8999e-07, 1, -1.6555e-14, 1.49455, -0.0999593)
 bone_name = "Cube"
 bone_idx = 19
 
@@ -12211,7 +12229,7 @@ mesh = SubResource("ArrayMesh_3t6mn")
 skeleton = NodePath("")
 
 [node name="Cube_002" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 2.08616e-07, 0, -2.08616e-07, 1, 0, 1.01348, -0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 2.08616e-07, 0, -2.08616e-07, 1, -2.69915e-19, 1.09935, -0.0999593)
 bone_name = "Cube.002"
 bone_idx = 20
 
@@ -12220,7 +12238,7 @@ mesh = SubResource("ArrayMesh_7gyme")
 skeleton = NodePath("")
 
 [node name="Cube_006" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, 9.46428e-09, -5.4463e-09, -8.25645e-09, 0.981767, 0.190087, 7.14605e-09, -0.190087, 0.981766, 0.1, 0.333348, 0.210171)
+transform = Transform3D(1, 2.50858e-08, -1.87076e-09, -1.83426e-08, 0.676259, -0.736663, -1.72147e-08, 0.736664, 0.676259, 0.1, 0.435938, -0.121469)
 bone_name = "Cube.006"
 bone_idx = 23
 
@@ -12229,7 +12247,7 @@ mesh = SubResource("ArrayMesh_vnuli")
 skeleton = NodePath("")
 
 [node name="Cube_007" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, -1.00938e-08, -9.79443e-09, 1.39964e-08, 0.782757, 0.622327, 1.38499e-09, -0.622327, 0.782756, 0.1, 0.681294, 0.0694596)
+transform = Transform3D(1, -2.69622e-08, -1.44201e-08, 3.0225e-08, 0.942945, 0.332948, 4.62038e-09, -0.332948, 0.942944, 0.1, 0.719266, -0.00856376)
 bone_name = "Cube.007"
 bone_idx = 24
 
@@ -12238,7 +12256,7 @@ mesh = SubResource("ArrayMesh_ps4m6")
 skeleton = NodePath("")
 
 [node name="Cube_008" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(-1, 5.99431e-09, -3.44115e-09, 6.88736e-09, 0.822335, -0.569003, 5.80997e-10, 0.569004, 0.822334, -0.1, 0.27905, -0.359857)
+transform = Transform3D(-1, 9.39244e-09, 6.39435e-10, 9.21951e-09, 0.990802, -0.135318, 1.90453e-09, 0.135318, 0.990801, -0.1, 0.336399, -0.00558801)
 bone_name = "Cube.008"
 bone_idx = 27
 
@@ -12247,7 +12265,7 @@ mesh = SubResource("ArrayMesh_70btb")
 skeleton = NodePath("")
 
 [node name="Cube_009" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(-1, -5.89597e-09, -8.73609e-10, -5.38468e-09, 0.956505, -0.291715, -2.55556e-09, 0.291715, 0.956504, -0.1, 0.621896, -0.181236)
+transform = Transform3D(-1, -9.32915e-09, 4.23956e-09, -7.68993e-09, 0.956647, 0.291249, 6.77288e-09, -0.291249, 0.956646, -0.1, 0.714958, -0.0199289)
 bone_name = "Cube.009"
 bone_idx = 28
 
@@ -12256,7 +12274,7 @@ mesh = SubResource("ArrayMesh_udwuc")
 skeleton = NodePath("")
 
 [node name="Cube_003" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 4.76837e-07, 0, -4.76837e-07, 1, 0, 1.01348, -0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 4.76837e-07, 0, -4.76837e-07, 1, -2.69915e-19, 1.09935, -0.0999593)
 bone_name = "Cube.003"
 bone_idx = 29
 
@@ -12265,7 +12283,7 @@ mesh = SubResource("ArrayMesh_3h5nc")
 skeleton = NodePath("")
 
 [node name="Cube_005" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(-1, -9.17406e-19, -1.89435e-21, -9.17406e-19, 0.999991, 0.00413102, 1.89548e-21, -0.00413191, 0.999991, -0.1, 0.0265193, -0.478844)
+transform = Transform3D(-1, -9.17406e-19, -1.89435e-21, -9.17406e-19, 0.999991, 0.00413102, 1.89548e-21, -0.00413191, 0.999991, -0.1, 0.0407851, -0.0341789)
 bone_name = "Cube.005"
 bone_idx = 31
 
@@ -12274,7 +12292,7 @@ mesh = SubResource("ArrayMesh_hpm0g")
 skeleton = NodePath("")
 
 [node name="Cube_001" type="BoneAttachment3D" parent="template_psx_charter/Object/Skeleton3D"]
-transform = Transform3D(1, -2.3312e-17, -2.90134e-18, 2.3312e-17, 0.969493, 0.245115, -2.90128e-18, -0.245115, 0.969494, 0.1, 0.0407661, 0.271682)
+transform = Transform3D(1, 1.60506e-16, -6.21134e-17, -1.60506e-16, 0.739496, -0.673161, -6.21136e-17, 0.67316, 0.739495, 0.1, 0.228958, -0.336049)
 bone_name = "Cube.001"
 bone_idx = 33
 

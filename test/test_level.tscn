@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cwfvd0xn75w35"]
+[gd_scene load_steps=14 format=3 uid="uid://cwfvd0xn75w35"]
 
 [ext_resource type="PackedScene" uid="uid://htm0lgxe7qor" path="res://tutorial/tutorial.tscn" id="1_6sax1"]
 [ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="2_nb7c2"]
@@ -6,10 +6,39 @@
 [ext_resource type="Material" uid="uid://dfvfw546vit4b" path="res://tutorial/material/pink.tres" id="4_xcqco"]
 [ext_resource type="PackedScene" uid="uid://cekkdbv72wq6d" path="res://assets/heal_dispenser/heal_dispenser.tscn" id="5_fmuhr"]
 [ext_resource type="PackedScene" uid="uid://bkarfeh4sm0d2" path="res://enemy/enemy.tscn" id="6_4xdgt"]
+[ext_resource type="Shader" path="res://shaders/diterring_glow.gdshader" id="7_cykt3"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_pxmwa"]
 vertices = PackedVector3Array(-8.75, 0, -27.75, -8.75, 0, 8.75, 9, 0, 8.75, 9, 0, -27.75)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gpqom"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_cykt3")
+shader_parameter/color = Color(1, 1, 1, 0.25098)
+shader_parameter/emission_energy = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3mr1"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_cykt3")
+shader_parameter/color = Color(0, 0, 0.8, 0.858824)
+shader_parameter/emission_energy = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lyndy"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_cykt3")
+shader_parameter/color = Color(1, 1, 0, 0.478431)
+shader_parameter/emission_energy = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_b2n1o"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("7_cykt3")
+shader_parameter/color = Color(0.870588, 0, 0, 0.898039)
+shader_parameter/emission_energy = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0nnn"]
 size = Vector3(23, 8, 29)
@@ -55,40 +84,27 @@ material = ExtResource("3_u2jpy")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 3, 0.53132, -22.6667)
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -3, 0.53132, -24.6667)
+outline_material = SubResource("ShaderMaterial_gpqom")
 triger_area = NodePath("../Area3D")
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -2.9141e-08, 0.53132, -22.6667)
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -1, 0.53132, -24.6667)
+outline_material = SubResource("ShaderMaterial_k3mr1")
 triger_area = NodePath("../Area3D")
+enemy_type = 1
 
 [node name="Enemy3" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -3, 0.53132, -22.6667)
+transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 1, 0.53132, -24.6667)
+outline_material = SubResource("ShaderMaterial_lyndy")
 triger_area = NodePath("../Area3D")
+enemy_type = 2
 
 [node name="Enemy4" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 3, 0.53132, -19.6667)
-triger_area = NodePath("../Area3D")
-
-[node name="Enemy5" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 2.33127e-07, 0.53132, -19.6667)
-triger_area = NodePath("../Area3D")
-
-[node name="Enemy6" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -3, 0.53132, -19.6667)
-triger_area = NodePath("../Area3D")
-
-[node name="Enemy7" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
 transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 3, 0.53132, -24.6667)
+outline_material = SubResource("ShaderMaterial_b2n1o")
 triger_area = NodePath("../Area3D")
-
-[node name="Enemy8" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -2.03987e-07, 0.53132, -24.6667)
-triger_area = NodePath("../Area3D")
-
-[node name="Enemy9" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
-transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -3, 0.53132, -24.6667)
-triger_area = NodePath("../Area3D")
+enemy_type = 3
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -24)
