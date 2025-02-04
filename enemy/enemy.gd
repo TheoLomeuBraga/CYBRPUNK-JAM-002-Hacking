@@ -61,6 +61,8 @@ func _ready() -> void:
 
 func idle_mode(delta: float) -> void:
 	walk_animation_speed = 0
+	velocity = Vector3.ZERO
+	move_and_slide()
 
 enum EnemyTypes {
 	death = -1,
@@ -74,9 +76,28 @@ enum EnemyTypes {
 
 @export var bullet : PackedScene
 
+@export var speed : float = 200
+
+var target_direction : Vector3
 func action_mode(delta: float) -> void:
-	walk_animation_speed = 0
-	velocity = Vector3.ZERO
+	
+	
+	
+	$NavigationAgent3D.target_position = Global.player.global_position
+	
+	var target_direction_rotation : Vector3 = target_direction
+	target_direction_rotation.y = global_position.y
+	
+	look_at(Global.player.global_position,Vector3.UP)
+	print(delta)
+	
+	if global_position.distance_to(Global.player.global_position) > 2.5:
+		walk_animation_speed = 1
+		velocity = target_direction * speed * delta
+	else:
+		walk_animation_speed = 0
+		velocity = Vector3.ZERO
+	
 	move_and_slide()
 
 @export var hacks : Array[Hack]
@@ -122,3 +143,11 @@ func get_hack_list() -> Array[Hack]:
 
 func self_destruct() -> void:
 	queue_free()
+
+
+func recalculate_route() -> void:
+	$Timer.wait_time = rng.randf_range(0.1,0.25)
+	
+	var next_path_pos : Vector3 = $NavigationAgent3D.get_next_path_position()
+	
+	target_direction = (next_path_pos - global_position).normalized()
