@@ -4,7 +4,7 @@ class_name NetGuner
 @export var speed : float = 5.0
 @export var rotate_speed : float = 100.0
 
-var game_mode : int = 3
+@export var game_mode : int = 3
 
 @onready var pda : Node3D = $pda/pda_model
 @onready var gun : Node3D = $gun/gun_model
@@ -134,7 +134,7 @@ func gun_mode(delta: float) -> void:
 		
 		$gun_shot.play()
 	
-	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider().has_method("hack") and $Camera3D/RayCast3D.get_collider().has_method("get_hack_list"):
+	if $Camera3D/RayCast3D.is_colliding() and $Camera3D/RayCast3D.get_collider().has_method("hack") and $Camera3D/RayCast3D.get_collider() != null and $Camera3D/RayCast3D.get_collider().has_method("get_hack_list"):
 		target_raycast_node = $Camera3D/RayCast3D.get_collider()
 		
 		$pda/pda_model/pda_screen/SubViewport/HackMenu.clean_hack_buttons()

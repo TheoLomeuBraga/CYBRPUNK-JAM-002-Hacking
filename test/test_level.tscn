@@ -1,0 +1,96 @@
+[gd_scene load_steps=9 format=3 uid="uid://cwfvd0xn75w35"]
+
+[ext_resource type="PackedScene" uid="uid://htm0lgxe7qor" path="res://tutorial/tutorial.tscn" id="1_6sax1"]
+[ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="2_nb7c2"]
+[ext_resource type="Material" uid="uid://cx2vq0dfgvlae" path="res://tutorial/material/purple.tres" id="3_u2jpy"]
+[ext_resource type="Material" uid="uid://dfvfw546vit4b" path="res://tutorial/material/pink.tres" id="4_xcqco"]
+[ext_resource type="PackedScene" uid="uid://cekkdbv72wq6d" path="res://assets/heal_dispenser/heal_dispenser.tscn" id="5_fmuhr"]
+[ext_resource type="PackedScene" uid="uid://bkarfeh4sm0d2" path="res://enemy/enemy.tscn" id="6_4xdgt"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_pxmwa"]
+vertices = PackedVector3Array(-8.75, 0, -27.75, -8.75, 0, 8.75, 9, 0, 8.75, 9, 0, -27.75)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0nnn"]
+size = Vector3(23, 8, 21)
+
+[node name="TutorialLevel" type="Node3D"]
+
+[node name="tutorial" parent="." instance=ExtResource("1_6sax1")]
+
+[node name="NetGuner" parent="." instance=ExtResource("2_nb7c2")]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_pxmwa")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 12)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
+top_level = true
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.5, -9.5)
+flip_faces = true
+size = Vector3(19, 8, 38)
+material = ExtResource("3_u2jpy")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0400543, 8, -9.49906)
+flip_faces = true
+size = Vector3(19, 1, 38)
+material = ExtResource("4_xcqco")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -9.5)
+operation = 2
+flip_faces = true
+size = Vector3(19, 1, 38)
+material = ExtResource("3_u2jpy")
+
+[node name="HealDispenser" parent="NavigationRegion3D" instance=ExtResource("5_fmuhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39)
+
+[node name="Enemy" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -2, 0.53132, -22)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy2" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0.53132, -22)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy3" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2, 0.53132, -22)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy4" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -2, 0.53132, -24)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy5" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0.53132, -24)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy6" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2, 0.53132, -24)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy7" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -2, 0.53132, -20)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy8" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0.53132, -20)
+triger_area = NodePath("../Area3D")
+
+[node name="Enemy9" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 2, 0.53132, -20)
+triger_area = NodePath("../Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -24)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_m0nnn")
