@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://GameOverScreen/game_over_screen.gd" id="1_0ndre"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="1_oqheu"]
-[ext_resource type="PackedScene" uid="uid://8wptunxgcbai" path="res://tutorial/tutorialLevel.tscn" id="2_bjn2e"]
 
 [node name="GameOverScreen" type="Control"]
 layout_mode = 3
@@ -12,7 +11,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ndre")
-first_area = ExtResource("2_bjn2e")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
