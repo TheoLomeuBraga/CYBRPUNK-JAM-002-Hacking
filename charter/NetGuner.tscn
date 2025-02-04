@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=23 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
 [ext_resource type="PackedScene" uid="uid://bs481cposx423" path="res://charter/bullet/Bullet.tscn" id="3_3baql"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="3_jcjq6"]
 [ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
+[ext_resource type="PackedScene" uid="uid://bhoaotm666wt7" path="res://GameOverScreen/GameOverScreen.tscn" id="4_gvqb3"]
 [ext_resource type="AudioStream" uid="uid://c4ye6k10pv4gr" path="res://sfx/Retro Weapon Gun LoFi 03.wav" id="5_nmv2i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
@@ -101,6 +102,7 @@ ram_indicator = ExtResource("4_1535y")
 max_ram_unitys = 2
 ram = 2.0
 bullet_sceane = ExtResource("3_3baql")
+game_over_sceane = ExtResource("4_gvqb3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_gsak8")
@@ -340,3 +342,8 @@ layout_mode = 2
 
 [node name="ram8" parent="hud/VBoxContainer/CenterContainer/GridContainer" instance=ExtResource("4_1535y")]
 layout_mode = 2
+
+[node name="iFrameTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[connection signal="timeout" from="iFrameTimer" to="." method="turn_off_iframes"]

@@ -186,13 +186,22 @@ func _physics_process(delta: float) -> void:
 			game_mode = 0
 
 @export var game_over_sceane :PackedScene
-
+var on_iframe : bool = false
 func get_shot() -> void:
-	health -= 10
-	if health <= 0:
-		get_tree().change_scene_to_packed(game_over_sceane)
+	if  not on_iframe:
+		
+		$iFrameTimer.start()
+		
+		health -= 10
+		
+		on_iframe = true
+		
+		if health <= 0:
+			get_tree().change_scene_to_packed(game_over_sceane)
 
 
+func turn_off_iframes() -> void:
+	on_iframe = false
 
 
 func _unhandled_input(event: InputEvent) -> void:

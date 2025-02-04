@@ -40,14 +40,26 @@ class_name Enemy
 		if $template_psx_charter/AnimationTree != null:
 			$template_psx_charter/AnimationTree.set("parameters/walk/blend_position",value)
 
+@export var bullet : PackedScene
+var can_shoot = false
 func shot() -> void:
+	
 	$template_psx_charter/AnimationTree.set("parameters/OneShot/request","fire")
+	can_shoot = false
+	$shotCooldown.wait_time = rng.randf_range(0.9,1.1)
+	$shotCooldown.start()
+	
+	var b : Node3D = bullet.instantiate()
+	get_parent().add_child(b)
+	b.global_position = $muzle.global_position
+	b.global_rotation = $muzle.global_rotation
 
-var game_mode : int = 0
+var game_mode : int = 1
 
 func enter_trtiger_area(body : Node) -> void:
 	if body is NetGuner:
-		game_mode = 1
+		game_mode = 2
+		$shotCooldown.start()
 		print("new target")
 
 
@@ -65,7 +77,6 @@ func idle_mode(delta: float) -> void:
 	move_and_slide()
 
 enum EnemyTypes {
-	death = -1,
 	vunerable = 0,
 	invunerable = 1,
 	fast = 2,
@@ -74,11 +85,14 @@ enum EnemyTypes {
 
 @export var enemy_type : EnemyTypes
 
-@export var bullet : PackedScene
+
 
 @export var speed : float = 200
 
 var target_direction : Vector3
+
+var death : bool = false
+
 func action_mode(delta: float) -> void:
 	
 	
@@ -97,17 +111,27 @@ func action_mode(delta: float) -> void:
 		walk_animation_speed = 0
 		velocity = Vector3.ZERO
 	
+	if can_shoot:
+		shot()
+	
 	move_and_slide()
 
 @export var hacks : Array[Hack]
 
+@export var gamemode_colors_array : Array[Color]
+
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
 		
-		if game_mode == 0:
+		if gamemode_colors_array.size() > enemy_type:
+			outline_color =  gamemode_colors_array[enemy_type]
+		
+		if game_mode == 1:
 			idle_mode(delta)
-		elif game_mode == 1:
+		elif game_mode == 2:
 			action_mode(delta)
+		
+		
 
 var rng : RandomNumberGenerator = RandomNumberGenerator.new()
 func explode() -> void:
@@ -118,13 +142,14 @@ func explode() -> void:
 	$AudioStreamPlayer3D.pitch_scale = rng.randf_range(0.5,1.5)
 	$AudioStreamPlayer3D.play()
 
+
 func get_shot() -> void:
 	if true:
 		explode()
 
 func hack(hack_name : String) -> void:
 	if hack_name == "kill":
-		enemy_type = EnemyTypes.death
+		death = true
 		explode()
 
 func get_hack_list() -> Array[Hack]:
@@ -145,8 +170,12 @@ func self_destruct() -> void:
 
 
 func recalculate_route() -> void:
-	$Timer.wait_time = rng.randf_range(0.1,0.25)
+	$pathReaclculateTimer.wait_time = rng.randf_range(0.1,0.25)
 	
 	var next_path_pos : Vector3 = $NavigationAgent3D.get_next_path_position()
 	
 	target_direction = (next_path_pos - global_position).normalized()
+
+
+func enable_to_shot() -> void:
+	can_shoot = true
