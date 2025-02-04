@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=24 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bv2c1wbq61dnr" path="res://charter/ram.tscn" id="4_1535y"]
 [ext_resource type="PackedScene" uid="uid://bhoaotm666wt7" path="res://GameOverScreen/GameOverScreen.tscn" id="4_gvqb3"]
 [ext_resource type="AudioStream" uid="uid://c4ye6k10pv4gr" path="res://sfx/Retro Weapon Gun LoFi 03.wav" id="5_nmv2i"]
+[ext_resource type="AudioStream" uid="uid://dlry75avge8if" path="res://sfx/Retro Impact LoFi 09.wav" id="7_m1p6s"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
 
@@ -250,6 +251,10 @@ stream = ExtResource("5_nmv2i")
 volume_db = -10.0
 pitch_scale = 2.0
 
+[node name="get_shot_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_m1p6s")
+pitch_scale = 1.5
+
 [node name="hud" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
@@ -269,6 +274,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="minimal_ram" type="ProgressBar" parent="hud"]
+texture_filter = 1
 layout_mode = 0
 offset_left = 297.0
 offset_top = 234.0

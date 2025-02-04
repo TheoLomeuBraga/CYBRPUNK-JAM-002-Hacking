@@ -191,6 +191,7 @@ func get_shot() -> void:
 	if  not on_iframe:
 		
 		$iFrameTimer.start()
+		$get_shot_sound.play()
 		
 		health -= 10
 		

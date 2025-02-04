@@ -25,7 +25,7 @@ class_name Enemy
 					if c2 is MeshInstance3D:
 						c2.mesh.set("surface_1/material",value)
 
-@export var outline_color : Color : 
+var outline_color : Color : 
 	get():
 		return outline_material.get_shader_parameter("color")
 	set(value):
@@ -53,6 +53,9 @@ func shot() -> void:
 	get_parent().add_child(b)
 	b.global_position = $muzle.global_position
 	b.global_rotation = $muzle.global_rotation
+	
+	$shot_sound.pitch_scale = rng.randf_range(0.75,1.25)
+	$shot_sound.play()
 
 var game_mode : int = 1
 
@@ -83,7 +86,15 @@ enum EnemyTypes {
 	strong = 3,
 }
 
-@export var enemy_type : EnemyTypes
+@export var gamemode_colors_array : Array[Color]
+
+@export var enemy_type : EnemyTypes : 
+	get():
+		return enemy_type
+	set(value):
+		enemy_type = value
+		if value >= 0 and value < gamemode_colors_array.size():
+			outline_color = gamemode_colors_array[value]
 
 
 
@@ -118,7 +129,7 @@ func action_mode(delta: float) -> void:
 
 @export var hacks : Array[Hack]
 
-@export var gamemode_colors_array : Array[Color]
+
 
 func _physics_process(delta: float) -> void:
 	if not Engine.is_editor_hint():
@@ -139,8 +150,8 @@ func explode() -> void:
 	$template_psx_charter.visible = false
 	$CollisionShape3D.disabled = true
 	
-	$AudioStreamPlayer3D.pitch_scale = rng.randf_range(0.5,1.5)
-	$AudioStreamPlayer3D.play()
+	$explosionSound.pitch_scale = rng.randf_range(0.5,1.5)
+	$explosionSound.play()
 
 
 func get_shot() -> void:
@@ -154,6 +165,7 @@ func hack(hack_name : String) -> void:
 
 func get_hack_list() -> Array[Hack]:
 	var ha : Array[Hack]
+	
 	
 	if enemy_type == EnemyTypes.vunerable:
 		var h : Hack = Hack.new()
