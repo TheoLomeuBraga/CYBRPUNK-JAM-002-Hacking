@@ -1,10 +1,6 @@
 extends Control
 
 
-
-
-@export var first_area : PackedScene
-
 func _ready() -> void:
 	$VBoxContainer/RichTextLabel.visible_ratio = 0
 	$VBoxContainer/again.visible = false
@@ -18,7 +14,8 @@ func _process(delta: float) -> void:
 	if $VBoxContainer/RichTextLabel.visible_ratio >= 1:
 		$VBoxContainer/again.visible = true
 	
-	
+
+@export_file("*.tscn") var first_area : String
 
 func _on_again_pressed() -> void:
-	get_tree().change_scene_to_packed(first_area)
+	get_tree().change_scene_to_file(first_area)

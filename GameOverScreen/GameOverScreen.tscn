@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhoaotm666wt7"]
+[gd_scene load_steps=3 format=3 uid="uid://bhoaotm666wt7"]
 
 [ext_resource type="Script" path="res://GameOverScreen/game_over_screen.gd" id="1_0ndre"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="1_oqheu"]
@@ -11,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0ndre")
+first_area = "res://tutorial/tutorialLevel.tscn"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
