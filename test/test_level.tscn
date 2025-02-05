@@ -32,7 +32,7 @@ shader_parameter/emission_energy = 1.0
 resource_local_to_scene = true
 render_priority = 0
 shader = ExtResource("7_cykt3")
-shader_parameter/color = Color(1, 1, 0, 0.478431)
+shader_parameter/color = Color(1, 0.501961, 0, 0.478431)
 shader_parameter/emission_energy = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b2n1o"]
@@ -89,24 +89,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39)
 transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -3, 0.53132, -24.6667)
 outline_material = SubResource("ShaderMaterial_gpqom")
 triger_area = NodePath("../Area3D")
+speed = 200.0
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
 transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, -1, 0.53132, -24.6667)
 outline_material = SubResource("ShaderMaterial_k3mr1")
 triger_area = NodePath("../Area3D")
 enemy_type = 1
+speed = 200.0
 
 [node name="Enemy3" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
 transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 1, 0.53132, -24.6667)
 outline_material = SubResource("ShaderMaterial_lyndy")
 triger_area = NodePath("../Area3D")
 enemy_type = 2
+speed = 200.0
 
 [node name="Enemy4" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("6_4xdgt")]
 transform = Transform3D(1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, 1, 3, 0.53132, -24.6667)
 outline_material = SubResource("ShaderMaterial_b2n1o")
 triger_area = NodePath("../Area3D")
 enemy_type = 3
+speed = 200.0
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -24)

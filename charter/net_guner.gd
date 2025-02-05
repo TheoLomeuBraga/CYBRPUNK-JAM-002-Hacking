@@ -81,6 +81,25 @@ func make_haker_stuf(hack_name : String) -> void:
 		health = value
 		$hud/VBoxContainer/healthBar.value = value
 
+enum PowerUpTypes {
+	none = 0,
+	invunerable = 1,
+	fast = 2,
+	strong = 3,
+}
+
+@export var power_up_type : PowerUpTypes :
+	get():
+		return power_up_type
+	set(value):
+		power_up_type = value
+		if $disable_power_up != null and value != PowerUpTypes.none:
+			$disable_power_up.start()
+
+func disable_power_up() -> void:
+	power_up_type = PowerUpTypes.none
+
+
 func _ready() -> void:
 	
 	Global.player = self
@@ -120,6 +139,9 @@ func gun_mode(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 	
+	if power_up_type == PowerUpTypes.fast:
+		velocity *= 2
+	
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("ui_accept") and not $gun/gun_model/AnimationPlayer.is_playing():
@@ -128,9 +150,20 @@ func gun_mode(delta: float) -> void:
 		var b : Node3D = bullet_sceane.instantiate()
 		get_parent().add_child(b)
 		b.global_position = $Camera3D/muzle.global_position
-		#b.get_node("model").global_position = $gun/gun_model/display_muzle.global_position
-		 
 		b.global_rotation = $Camera3D/muzle.global_rotation
+		
+		if power_up_type == PowerUpTypes.strong:
+			b = bullet_sceane.instantiate()
+			get_parent().add_child(b)
+			b.global_position = $Camera3D/muzle.global_position
+			b.global_rotation = $Camera3D/muzle.global_rotation
+			b.rotation.y += 10
+			
+			b = bullet_sceane.instantiate()
+			get_parent().add_child(b)
+			b.global_position = $Camera3D/muzle.global_position
+			b.global_rotation = $Camera3D/muzle.global_rotation
+			b.rotation.y -= 10
 		
 		$gun_shot.play()
 	
@@ -170,7 +203,25 @@ func nothing_mode(delta: float) -> void:
 	
 	move_and_slide()
 
+
+
 func _physics_process(delta: float) -> void:
+	
+	$hud/power_up_bar.visible = $disable_power_up.time_left > 0
+	$hud/power_up_bar.value = $disable_power_up.time_left * 20
+	
+	var power_up_bar_color : Color = Color.BLACK
+	if power_up_type == PowerUpTypes.invunerable:
+		power_up_bar_color = Color.BLUE
+	elif power_up_type == PowerUpTypes.fast:
+		power_up_bar_color = Color.ORANGE
+	elif power_up_type == PowerUpTypes.strong:
+		power_up_bar_color = Color.DARK_RED
+	
+	var s : StyleBoxFlat = $hud/power_up_bar.get_theme_stylebox("fill")
+	s.bg_color = power_up_bar_color
+	$hud/power_up_bar.add_theme_stylebox_override("fill",s)
+	
 	ram += delta * ram_regeneration_speed
 	if game_mode == 0:
 		pda_mode(delta)
@@ -188,7 +239,7 @@ func _physics_process(delta: float) -> void:
 @export var game_over_sceane :PackedScene
 var on_iframe : bool = false
 func get_shot() -> void:
-	if  not on_iframe:
+	if not on_iframe and power_up_type != PowerUpTypes.invunerable:
 		
 		$iFrameTimer.start()
 		$get_shot_sound.play()

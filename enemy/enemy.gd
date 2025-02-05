@@ -42,17 +42,40 @@ var outline_color : Color :
 
 @export var bullet : PackedScene
 var can_shoot = false
+
 func shot() -> void:
 	
 	$template_psx_charter/AnimationTree.set("parameters/OneShot/request","fire")
 	can_shoot = false
+	
 	$shotCooldown.wait_time = rng.randf_range(0.9,1.1)
+	
+	if enemy_type == EnemyTypes.fast:
+		$shotCooldown.wait_time = rng.randf_range(0.4,0.6)
+	elif enemy_type == EnemyTypes.vunerable:
+		$shotCooldown.wait_time = rng.randf_range(2.4,2.6)
+	
+	
 	$shotCooldown.start()
 	
 	var b : Node3D = bullet.instantiate()
 	get_parent().add_child(b)
 	b.global_position = $muzle.global_position
 	b.global_rotation = $muzle.global_rotation
+	
+	if enemy_type == EnemyTypes.strong:
+		b = bullet.instantiate()
+		get_parent().add_child(b)
+		b.global_position = $muzle.global_position
+		b.global_rotation = $muzle.global_rotation
+		b.rotation.y += 10
+		
+		b = bullet.instantiate()
+		get_parent().add_child(b)
+		b.global_position = $muzle.global_position
+		b.global_rotation = $muzle.global_rotation
+		b.rotation.y -= 10
+		
 	
 	$shot_sound.pitch_scale = rng.randf_range(0.75,1.25)
 	$shot_sound.play()
@@ -73,6 +96,8 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		if triger_area != null:
 			triger_area.body_entered.connect(enter_trtiger_area)
+	
+	
 
 func idle_mode(delta: float) -> void:
 	walk_animation_speed = 0
@@ -100,15 +125,22 @@ enum EnemyTypes {
 			outline_color = gamemode_colors_array[value]
 		
 
+@export var speed : float = 100
 
 
-@export var speed : float = 200
 
 var target_direction : Vector3
 
 var death : bool = false
 
 func action_mode(delta: float) -> void:
+	
+	if enemy_type == EnemyTypes.fast:
+		speed = 200
+	elif enemy_type == EnemyTypes.vunerable:
+		speed = 50
+	else:
+		speed = 100
 	
 	$NavigationAgent3D.target_position = Global.player.global_position
 	
@@ -130,8 +162,6 @@ func action_mode(delta: float) -> void:
 	
 	
 	move_and_slide()
-
-@export var hacks : Array[Hack]
 
 
 
@@ -161,11 +191,22 @@ func die() -> void:
 	death = true
 	explode()
 
+
+
 func get_shot() -> void:
-	if true:
+	if enemy_type == EnemyTypes.vunerable:
 		die()
 
 
+'''
+enum PowerUpTypes {
+	none = 0,
+	invunerable = 1,
+	fast = 2,
+	strong = 3,
+}
+@export var power_up_type : PowerUpTypes
+'''
 
 func hack(hack_name : String) -> void:
 	if hack_name == "kill":
@@ -174,13 +215,20 @@ func hack(hack_name : String) -> void:
 func get_hack_list() -> Array[Hack]:
 	var ha : Array[Hack]
 	
-	
 	if enemy_type == EnemyTypes.vunerable:
+		
 		var h : Hack = Hack.new()
 		h.hack_name = "kill"
 		h.hack_text = "kill"
 		h.hack_color = Color.RED
 		ha.append(h)
+		
+	elif enemy_type == EnemyTypes.invunerable:
+		pass
+	elif enemy_type == EnemyTypes.fast:
+		pass
+	elif enemy_type == EnemyTypes.strong:
+		pass
 	
 	return ha
 
