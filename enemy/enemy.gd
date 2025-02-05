@@ -79,14 +79,17 @@ func idle_mode(delta: float) -> void:
 	velocity = Vector3.ZERO
 	move_and_slide()
 
+
+
+@export var gamemode_colors_array : Array[Color]
+
+
 enum EnemyTypes {
 	vunerable = 0,
 	invunerable = 1,
 	fast = 2,
 	strong = 3,
 }
-
-@export var gamemode_colors_array : Array[Color]
 
 @export var enemy_type : EnemyTypes : 
 	get():
@@ -95,6 +98,7 @@ enum EnemyTypes {
 		enemy_type = value
 		if value >= 0 and value < gamemode_colors_array.size():
 			outline_color = gamemode_colors_array[value]
+		
 
 
 
@@ -160,6 +164,8 @@ func die() -> void:
 func get_shot() -> void:
 	if true:
 		die()
+
+
 
 func hack(hack_name : String) -> void:
 	if hack_name == "kill":
