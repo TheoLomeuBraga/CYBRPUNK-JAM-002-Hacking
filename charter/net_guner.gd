@@ -69,10 +69,12 @@ var target_raycast_node : Node
 func make_haker_stuf(hack_name : String) -> void:
 	
 	
-	if target_raycast_node != null and ram > 1:
+	if target_raycast_node != null and ram >= 1:
 		target_raycast_node.hack(hack_name)
 		ram-=1
 		print("hack_name: ",hack_name)
+	else:
+		$deny_hack.play()
 
 @export var health : int = 50 :
 	get():
@@ -88,13 +90,17 @@ enum PowerUpTypes {
 	strong = 3,
 }
 
-@export var power_up_type : PowerUpTypes :
+@export var power_up_type : PowerUpTypes =  PowerUpTypes.none:
 	get():
 		return power_up_type
 	set(value):
 		power_up_type = value
-		if $disable_power_up != null and value != PowerUpTypes.none:
-			$disable_power_up.start()
+		if $disable_power_up != null :
+			if value != PowerUpTypes.none:
+				$disable_power_up.start()
+			else:
+				$disable_power_up.stop()
+			
 
 func disable_power_up() -> void:
 	power_up_type = PowerUpTypes.none
@@ -152,18 +158,20 @@ func gun_mode(delta: float) -> void:
 		b.global_position = $Camera3D/muzle.global_position
 		b.global_rotation = $Camera3D/muzle.global_rotation
 		
+		
 		if power_up_type == PowerUpTypes.strong:
 			b = bullet_sceane.instantiate()
 			get_parent().add_child(b)
 			b.global_position = $Camera3D/muzle.global_position
 			b.global_rotation = $Camera3D/muzle.global_rotation
-			b.rotation.y += 10
+			b.rotation_degrees.y += 10
 			
 			b = bullet_sceane.instantiate()
 			get_parent().add_child(b)
 			b.global_position = $Camera3D/muzle.global_position
 			b.global_rotation = $Camera3D/muzle.global_rotation
-			b.rotation.y -= 10
+			b.rotation_degrees.y -= 10
+		
 		
 		$gun_shot.play()
 	
@@ -207,7 +215,7 @@ func nothing_mode(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	
-	$hud/power_up_bar.visible = $disable_power_up.time_left > 0
+	$hud/power_up_bar.visible = $hud/power_up_bar.value > 0
 	$hud/power_up_bar.value = $disable_power_up.time_left * 20
 	
 	var power_up_bar_color : Color = Color.BLACK

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://801dg8820s8q"]
+[gd_scene load_steps=26 format=3 uid="uid://801dg8820s8q"]
 
 [ext_resource type="Script" path="res://charter/net_guner.gd" id="1_jkax5"]
 [ext_resource type="PackedScene" uid="uid://p3oa6x3s5epp" path="res://charter/pda/hack_menu/HackMenu.tscn" id="2_06rx1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bhoaotm666wt7" path="res://GameOverScreen/GameOverScreen.tscn" id="4_gvqb3"]
 [ext_resource type="AudioStream" uid="uid://c4ye6k10pv4gr" path="res://sfx/Retro Weapon Gun LoFi 03.wav" id="5_nmv2i"]
 [ext_resource type="AudioStream" uid="uid://dlry75avge8if" path="res://sfx/Retro Impact LoFi 09.wav" id="7_m1p6s"]
+[ext_resource type="AudioStream" uid="uid://dng807vh2sxu2" path="res://sfx/Retro Descending Short 20.wav" id="8_sl1ly"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gsak8"]
 
@@ -105,7 +106,6 @@ script = ExtResource("1_jkax5")
 ram_indicator = ExtResource("4_1535y")
 max_ram_unitys = 2
 ram = 2.0
-power_up_type = 3
 bullet_sceane = ExtResource("3_3baql")
 game_over_sceane = ExtResource("4_gvqb3")
 
@@ -259,6 +259,10 @@ pitch_scale = 2.0
 stream = ExtResource("7_m1p6s")
 pitch_scale = 1.5
 
+[node name="deny_hack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_sl1ly")
+pitch_scale = 15.0
+
 [node name="hud" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
@@ -310,6 +314,7 @@ layout_mode = 2
 offset_top = 449.0
 offset_right = 640.0
 offset_bottom = 476.0
+theme_override_fonts/font = ExtResource("3_jcjq6")
 theme_override_styles/fill = SubResource("StyleBoxFlat_vdqvg")
 value = 50.0
 

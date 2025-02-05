@@ -2,6 +2,7 @@
 extends CharacterBody3D
 class_name Enemy
 
+@export var estationary : bool = false
 
 @export var base_material : Material :
 	get():
@@ -68,13 +69,13 @@ func shot() -> void:
 		get_parent().add_child(b)
 		b.global_position = $muzle.global_position
 		b.global_rotation = $muzle.global_rotation
-		b.rotation.y += 10
+		b.rotation_degrees .y += 10
 		
 		b = bullet.instantiate()
 		get_parent().add_child(b)
 		b.global_position = $muzle.global_position
 		b.global_rotation = $muzle.global_rotation
-		b.rotation.y -= 10
+		b.rotation_degrees.y -= 10
 		
 	
 	$shot_sound.pitch_scale = rng.randf_range(0.75,1.25)
@@ -149,12 +150,15 @@ func action_mode(delta: float) -> void:
 	
 	look_at(Global.player.global_position,Vector3.UP)
 	
-	if global_position.distance_to(Global.player.global_position) > 2.5:
-		walk_animation_speed = 1
-		velocity = target_direction * speed * delta
-	else:
-		walk_animation_speed = 0
+	if estationary:
 		velocity = Vector3.ZERO
+	else:
+		if global_position.distance_to(Global.player.global_position) > 2.5:
+			walk_animation_speed = 1
+			velocity = target_direction * speed * delta
+		else:
+			walk_animation_speed = 0
+			velocity = Vector3.ZERO
 	
 	if can_shoot:
 		shot()
@@ -209,10 +213,23 @@ enum PowerUpTypes {
 '''
 
 func hack(hack_name : String) -> void:
+	
+	$get_haked_sfx.play()
+	
 	if hack_name == "kill":
 		die()
+	elif hack_name == "copy_ability":
+		if enemy_type == EnemyTypes.invunerable:
+			Global.player.power_up_type = NetGuner.PowerUpTypes.invunerable
+		elif enemy_type == EnemyTypes.fast:
+			Global.player.power_up_type = NetGuner.PowerUpTypes.fast
+		elif enemy_type == EnemyTypes.strong:
+			Global.player.power_up_type = NetGuner.PowerUpTypes.strong
+	elif hack_name == "annul_ability":
+		enemy_type = EnemyTypes.vunerable
 
 func get_hack_list() -> Array[Hack]:
+	
 	var ha : Array[Hack]
 	
 	if enemy_type == EnemyTypes.vunerable:
@@ -223,12 +240,20 @@ func get_hack_list() -> Array[Hack]:
 		h.hack_color = Color.RED
 		ha.append(h)
 		
-	elif enemy_type == EnemyTypes.invunerable:
-		pass
-	elif enemy_type == EnemyTypes.fast:
-		pass
-	elif enemy_type == EnemyTypes.strong:
-		pass
+	else:
+		
+		var h : Hack = Hack.new()
+		h.hack_name = "copy_ability"
+		h.hack_text = "copy ability"
+		h.hack_color = Color.YELLOW
+		ha.append(h)
+		
+		h = Hack.new()
+		h.hack_name = "annul_ability"
+		h.hack_text = "annul ability"
+		h.hack_color = Color.DARK_GRAY
+		ha.append(h)
+	
 	
 	return ha
 

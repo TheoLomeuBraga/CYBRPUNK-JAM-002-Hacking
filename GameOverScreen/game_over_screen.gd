@@ -4,6 +4,8 @@ extends Control
 func _ready() -> void:
 	$VBoxContainer/RichTextLabel.visible_ratio = 0
 	$VBoxContainer/again.visible = false
+	
+	Engine.time_scale = 1.0
 
 func _process(delta: float) -> void:
 	$VBoxContainer/RichTextLabel.visible_ratio += delta / 1.5
