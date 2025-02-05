@@ -5,6 +5,7 @@ var closed : bool = true
 @export var mat : Material
 
 func _ready() -> void:
+	mat = mat.duplicate()
 	$"../MeshInstance3D2".mesh.material = mat
 
 func hack(hack_name : String) -> void:

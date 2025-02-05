@@ -103,6 +103,7 @@ bg_color = Color(1, 0, 0, 1)
 
 [node name="NetGuner" type="CharacterBody3D"]
 script = ExtResource("1_jkax5")
+game_mode = 1
 ram_indicator = ExtResource("4_1535y")
 max_ram_unitys = 2
 ram = 2.0

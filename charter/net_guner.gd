@@ -62,7 +62,7 @@ class_name NetGuner
 					
 					i+=1
 
-@export var ram_regeneration_speed : float = 0.1
+@export var ram_regeneration_speed : float = 0.25
 
 var target_raycast_node : Node
 

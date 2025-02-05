@@ -1,26 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://htm0lgxe7qor"]
+[gd_scene load_steps=3 format=3 uid="uid://htm0lgxe7qor"]
 
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="1_gylrx"]
+[ext_resource type="Script" path="res://tutorial/tutorial_page_manager.gd" id="1_s0eik"]
 
-[node name="tutorial" type="Control"]
+[node name="tutorial" type="Control" node_paths=PackedStringArray("pages")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 640.0
 offset_bottom = 480.0
+script = ExtResource("1_s0eik")
+pages = [NodePath("page1"), NodePath("page2")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
 offset_left = 320.0
 offset_right = 640.0
-offset_bottom = 158.0
+offset_bottom = 214.0
 color = Color(0, 0, 0, 0.498039)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="page1" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 320.0
 offset_right = 640.0
-offset_bottom = 158.0
+offset_bottom = 214.0
 theme_override_fonts/normal_font = ExtResource("1_gylrx")
 bbcode_enabled = true
 text = "[center]
@@ -32,4 +36,25 @@ text = "[center]
 [[color=red][shake]SPACE[/shake][/color]] select and shot
 
 [[color=purple][wave]E[/wave][/color]] use [color=yellow]PDA[/color]
+[/center]"
+
+[node name="page2" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 640.0
+offset_bottom = 214.0
+theme_override_fonts/normal_font = ExtResource("1_gylrx")
+bbcode_enabled = true
+text = "[center]
+
+[shake][color=yellow]HACK[/color][/shake] the enemys the enemy's to make them [wave][color=gray]vunerable[/color][/wave]
+
+[0] is [wave]vunerable[/wave]
+
+[color=blue][0][/color] is [color=blue]invunerable[/color] 
+
+[color=red][0][/color] is [shake][color=red]strong[/color][/shake]
+
+[color=orange][0][/color] is [color=orange]fast[/color] 
+
 [/center]"

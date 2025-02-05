@@ -1,14 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://8wptunxgcbai"]
+[gd_scene load_steps=35 format=3 uid="uid://8wptunxgcbai"]
 
 [ext_resource type="PackedScene" uid="uid://htm0lgxe7qor" path="res://tutorial/tutorial.tscn" id="1_dwugb"]
 [ext_resource type="PackedScene" uid="uid://bbemm7c6bb16t" path="res://assets/hackable_door/hackable_door.tscn" id="1_w5o0u"]
 [ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="2_qqjjw"]
 [ext_resource type="FontFile" uid="uid://oidj8gukxjk1" path="res://fonts/SAIBA-45.ttf" id="2_rqqdp"]
+[ext_resource type="Script" path="res://assets/heal_dispenser/heal_dispenser.gd" id="4_l20ur"]
 [ext_resource type="Material" uid="uid://dfvfw546vit4b" path="res://tutorial/material/pink.tres" id="4_t8km2"]
 [ext_resource type="Material" uid="uid://cx2vq0dfgvlae" path="res://tutorial/material/purple.tres" id="5_gi0f8"]
-[ext_resource type="PackedScene" uid="uid://cekkdbv72wq6d" path="res://assets/heal_dispenser/heal_dispenser.tscn" id="7_fc0jp"]
+[ext_resource type="Script" path="res://hacks/hack.gd" id="5_mcpyv"]
+[ext_resource type="AudioStream" uid="uid://dvo7571ij6ly1" path="res://sfx/Retro PowerUP 09.wav" id="6_e1a8k"]
 [ext_resource type="PackedScene" uid="uid://c5hj3ooxnyr6j" path="res://charter/pda/PdaPowerUp.tscn" id="7_xdmu6"]
 [ext_resource type="PackedScene" uid="uid://bkarfeh4sm0d2" path="res://enemy/enemy.tscn" id="9_uqcph"]
+[ext_resource type="Shader" path="res://shaders/diterring_glow.gdshader" id="10_ilaxn"]
+[ext_resource type="PackedScene" uid="uid://dbmbhqm47eao4" path="res://assets/event_door/event_door.tscn" id="11_gc2jt"]
+[ext_resource type="Script" path="res://tutorial/change_tutorial.gd" id="14_5oeln"]
+[ext_resource type="Script" path="res://assets/next_level_triger/next_level_triger.gd" id="15_fv8rl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hesev"]
 albedo_color = Color(1, 1, 0.443137, 1)
@@ -25,12 +31,82 @@ font = ExtResource("2_rqqdp")
 pixel_size = 0.075
 depth = 0.2
 
+[sub_resource type="Resource" id="Resource_82ldm"]
+script = ExtResource("5_mcpyv")
+hack_name = "heal"
+hack_text = "Heal"
+hack_color = Color(0, 1, 0, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6moim"]
+size = Vector3(1, 2, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xxl5x"]
+albedo_color = Color(0.273873, 0.273873, 0.273873, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_6jwgs"]
+material = SubResource("StandardMaterial3D_xxl5x")
+top_radius = 0.1
+height = 1.0
+radial_segments = 8
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x67rb"]
+spread = 180.0
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5x7fl"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_k7dmq"]
+material = SubResource("StandardMaterial3D_5x7fl")
+radius = 0.1
+height = 0.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx2da"]
+cull_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_3dnon"]
+material = SubResource("StandardMaterial3D_wx2da")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qa4ge"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0, 1, 0, 1)
+
 [sub_resource type="NavigationMesh" id="NavigationMesh_d81ia"]
-vertices = PackedVector3Array(-0.75, -0.24873, -38, -1, -0.24873, -39.75, -8.75, -0.24873, -40.75, 0.75, -0.24873, -40, 9, -0.24873, -40.75, 1, -0.24873, -38.25, 9.25, -0.24873, -30.5, 1, -0.24873, -22.75, 9, -0.24873, -23, -8.75, -0.24873, -23, -0.75, -0.24873, -22.75, -0.75, -0.24873, -11.25, 1, -0.24873, -11.25, 29.25, -0.24873, -35.5, 30.25, -0.24873, -35.75, 30.25, -0.24873, -40.5, 22.5, -0.24873, -40.5, 22.25, -0.24873, -32.5, 10.5, -0.24873, -32.5, 10.5, -0.24873, -30.75, 22.25, -0.24873, -30.75, 22.5, -0.24873, -22.75, 29.25, -0.24873, -22.75, 31.5, -0.24873, -35.5, 31.5, -0.24873, -34, 37.25, -0.24873, -34.25, 37.25, -0.24873, -40.5, 39.5, -0.24873, -27.75, 38.5, -0.24873, -27.5, 38.5, -0.24873, -22.75, 64.25, -0.24873, -22.75, 64.25, -0.24873, -40.5, 39.5, -0.24873, -40.5, 31.5, -0.24873, -29, 37.25, -0.24873, -29.25, 37.25, -0.24873, -27.75, 31.5, -0.24873, -22.75, 1.25, -0.24873, -8.75, 1, -0.24873, -9.75, -0.75, -0.24873, -9.75, -1.25, -0.24873, -8.75, -8.75, -0.24873, 8.75, 9, -0.24873, 8.75, -8.75, -0.24873, -8.75, 9, -0.24873, -8.75)
-polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 1, 2), PackedInt32Array(3, 2, 4), PackedInt32Array(3, 4, 5), PackedInt32Array(5, 4, 6), PackedInt32Array(8, 7, 6), PackedInt32Array(6, 7, 0), PackedInt32Array(0, 7, 9), PackedInt32Array(0, 9, 2), PackedInt32Array(7, 10, 9), PackedInt32Array(7, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(0, 5, 6), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 16), PackedInt32Array(16, 13, 17), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(17, 13, 20), PackedInt32Array(20, 13, 21), PackedInt32Array(21, 13, 22), PackedInt32Array(23, 14, 15), PackedInt32Array(25, 24, 23), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 15), PackedInt32Array(28, 27, 29), PackedInt32Array(29, 27, 30), PackedInt32Array(32, 31, 27), PackedInt32Array(27, 31, 30), PackedInt32Array(25, 34, 24), PackedInt32Array(24, 34, 33), PackedInt32Array(35, 28, 29), PackedInt32Array(33, 34, 35), PackedInt32Array(33, 35, 36), PackedInt32Array(36, 35, 29), PackedInt32Array(39, 38, 37), PackedInt32Array(39, 37, 40), PackedInt32Array(40, 37, 41), PackedInt32Array(41, 37, 42), PackedInt32Array(41, 43, 40), PackedInt32Array(37, 44, 42)]
+vertices = PackedVector3Array(-0.75, -0.24873, -38, -1, -0.24873, -39.75, -8.75, -0.24873, -40.75, 0.75, -0.24873, -40, 9, -0.24873, -40.75, 1, -0.24873, -38.25, 9.25, -0.24873, -30.5, 1, -0.24873, -22.75, 9, -0.24873, -23, -8.75, -0.24873, -23, -0.75, -0.24873, -22.75, -0.75, -0.24873, -11.25, 1, -0.24873, -11.25, 29.25, -0.24873, -35.5, 30.5, -0.24873, -35.75, 30.5, -0.24873, -40.5, 22.5, -0.24873, -40.5, 22.25, -0.24873, -32.5, 10.5, -0.24873, -32.5, 10.5, -0.24873, -30.75, 22.25, -0.24873, -30.75, 22.5, -0.24873, -22.75, 29.25, -0.24873, -22.75, 31.5, -0.24873, -35.5, 64.25, -0.24873, -40.5, 31.5, -0.24873, -22.75, 64.25, -0.24873, -22.75, 1.25, -0.24873, -8.75, 1, -0.24873, -9.75, -0.75, -0.24873, -9.75, -1.25, -0.24873, -8.75, -8.75, -0.24873, 8.75, 9, -0.24873, 8.75, -8.75, -0.24873, -8.75, 9, -0.24873, -8.75)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 1, 2), PackedInt32Array(3, 2, 4), PackedInt32Array(3, 4, 5), PackedInt32Array(5, 4, 6), PackedInt32Array(8, 7, 6), PackedInt32Array(6, 7, 0), PackedInt32Array(0, 7, 9), PackedInt32Array(0, 9, 2), PackedInt32Array(7, 10, 9), PackedInt32Array(7, 12, 10), PackedInt32Array(10, 12, 11), PackedInt32Array(0, 5, 6), PackedInt32Array(15, 14, 13), PackedInt32Array(15, 13, 16), PackedInt32Array(16, 13, 17), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 18), PackedInt32Array(17, 13, 20), PackedInt32Array(20, 13, 21), PackedInt32Array(21, 13, 22), PackedInt32Array(14, 15, 23), PackedInt32Array(23, 15, 24), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 24), PackedInt32Array(29, 28, 27), PackedInt32Array(29, 27, 30), PackedInt32Array(30, 27, 31), PackedInt32Array(31, 27, 32), PackedInt32Array(31, 33, 30), PackedInt32Array(27, 34, 32)]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ytkab"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gvqfw"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("10_ilaxn")
+shader_parameter/color = Color(0, 0, 0.8, 0.858824)
+shader_parameter/emission_energy = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wo21x"]
+resource_local_to_scene = true
+render_priority = 0
+shader = ExtResource("10_ilaxn")
+shader_parameter/color = Color(1, 1, 1, 0.52549)
+shader_parameter/emission_energy = null
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jv0mj"]
-size = Vector3(23, 8, 21)
+size = Vector3(43, 16, 31)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_msq61"]
+size = Vector3(2, 6, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sbhcs"]
+size = Vector3(3, 6, 4)
 
 [node name="TutorialLevel" type="Node3D"]
 
@@ -38,10 +114,62 @@ size = Vector3(23, 8, 21)
 
 [node name="NetGuner" parent="." instance=ExtResource("2_qqjjw")]
 transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, 0, 0, 0)
+game_mode = 3
 
 [node name="logo" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -9.50235, 2, 0.3005)
 mesh = SubResource("TextMesh_yvhnc")
+
+[node name="HealDispenser" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39)
+script = ExtResource("4_l20ur")
+hacks = Array[ExtResource("5_mcpyv")]([SubResource("Resource_82ldm")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HealDispenser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_6moim")
+
+[node name="base" type="MeshInstance3D" parent="HealDispenser"]
+mesh = SubResource("CylinderMesh_6jwgs")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="HealDispenser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 32
+one_shot = true
+explosiveness = 1.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_x67rb")
+draw_pass_1 = SubResource("SphereMesh_k7dmq")
+
+[node name="heal_model" type="MeshInstance3D" parent="HealDispenser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_3dnon")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="HealDispenser/heal_model"]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="HealDispenser/heal_model/CSGCombiner3D"]
+size = Vector3(0.2, 0.75, 0.1)
+material = SubResource("StandardMaterial3D_qa4ge")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="HealDispenser/heal_model/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+size = Vector3(0.2, 0.75, 0.1)
+material = SubResource("StandardMaterial3D_qa4ge")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="HealDispenser/heal_model/CSGCombiner3D"]
+transform = Transform3D(0.707107, 0.707107, 0, -0.707107, 0.707107, 0, 0, 0, 1, 0, 0, 0)
+operation = 2
+size = Vector3(0.1, 0.75, 0.1)
+material = SubResource("StandardMaterial3D_qa4ge")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="HealDispenser"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+stream = ExtResource("6_e1a8k")
+
+[node name="EventDoor" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("11_gc2jt")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 2, -31.6713)
+targets = [NodePath("../HealDispenser/heal_model")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_d81ia")
@@ -51,9 +179,6 @@ transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 
 
 [node name="HackableDoor" parent="NavigationRegion3D" instance=ExtResource("1_w5o0u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25127, -10.5173)
-
-[node name="HackableDoor2" parent="NavigationRegion3D" instance=ExtResource("1_w5o0u")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 9.86689, 2.25127, -31.6618)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="NavigationRegion3D"]
 top_level = true
@@ -115,6 +240,12 @@ flip_faces = true
 size = Vector3(3, 5, 13.7166)
 material = ExtResource("5_gi0f8")
 
+[node name="CSGBox3D13" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 70.4261, 2, -31.6618)
+flip_faces = true
+size = Vector3(3, 5, 13.7166)
+material = ExtResource("5_gi0f8")
+
 [node name="CSGBox3D10" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 43.3487, 8, -31.6218)
 flip_faces = true
@@ -135,33 +266,54 @@ flip_faces = true
 size = Vector3(13, 11, 1)
 material = ExtResource("5_gi0f8")
 
-[node name="CSGBox3D13" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 38.3496, 4, -34.6618)
+[node name="CSGBox3D14" type="CSGBox3D" parent="NavigationRegion3D/CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 75.5, 2, -32)
 operation = 2
 flip_faces = true
-size = Vector3(13, 11, 1)
-material = ExtResource("5_gi0f8")
-
-[node name="HealDispenser" parent="NavigationRegion3D" instance=ExtResource("7_fc0jp")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -39)
+size = Vector3(6, 7, 5)
+material = SubResource("StandardMaterial3D_ytkab")
 
 [node name="Node3D" parent="." instance=ExtResource("7_xdmu6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
 
 [node name="Enemy" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("9_uqcph")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 58, 0.53132, -31)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 58, 0.53132, -35)
+estationary = true
+outline_material = SubResource("ShaderMaterial_gvqfw")
 triger_area = NodePath("../Area3D")
+enemy_type = 1
 
 [node name="Enemy2" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("9_uqcph")]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 58, 0.53132, -35)
-triger_area = NodePath("../Area3D")
-
-[node name="Enemy3" parent="." node_paths=PackedStringArray("triger_area") instance=ExtResource("9_uqcph")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 58, 0.53132, -27)
+outline_material = SubResource("ShaderMaterial_wo21x")
 triger_area = NodePath("../Area3D")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58, 0, -37)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 4, 5)
 shape = SubResource("BoxShape3D_jv0mj")
+
+[node name="EventDoor2" parent="." node_paths=PackedStringArray("targets") instance=ExtResource("11_gc2jt")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 65.298, 1.72357, -31.6042)
+targets = [NodePath("../Enemy"), NodePath("../Enemy2")]
+
+[node name="change_tutorial" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, -32)
+script = ExtResource("14_5oeln")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="change_tutorial"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 2.5, 0)
+shape = SubResource("BoxShape3D_msq61")
+
+[node name="NextAreaTriger" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72, 0, -32)
+script = ExtResource("15_fv8rl")
+next_area = "res://levels/level_1.tscn"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NextAreaTriger"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0.5)
+shape = SubResource("BoxShape3D_sbhcs")
+
+[connection signal="body_entered" from="change_tutorial" to="change_tutorial" method="_on_body_entered"]
