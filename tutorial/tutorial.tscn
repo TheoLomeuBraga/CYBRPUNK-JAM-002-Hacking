@@ -20,7 +20,6 @@ offset_bottom = 214.0
 color = Color(0, 0, 0, 0.498039)
 
 [node name="page1" type="RichTextLabel" parent="."]
-visible = false
 layout_mode = 0
 offset_left = 320.0
 offset_right = 640.0
@@ -39,6 +38,7 @@ text = "[center]
 [/center]"
 
 [node name="page2" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 0
 offset_left = 320.0
 offset_right = 640.0

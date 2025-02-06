@@ -13,7 +13,7 @@ class_name Enemy
 			for c1 in $template_psx_charter/Object/Skeleton3D.get_children():
 				for c2 in c1.get_children():
 					if c2 is MeshInstance3D:
-						c2.mesh.set("surface_0/material",value)
+						c2.mesh.set("surface_0/material",value.duplicate())
 
 @export var outline_material : Material :
 	get():

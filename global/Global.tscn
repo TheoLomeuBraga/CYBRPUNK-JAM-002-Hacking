@@ -1,9 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://ip0qa3e2f6vs"]
+[gd_scene load_steps=8 format=3 uid="uid://ip0qa3e2f6vs"]
 
 [ext_resource type="Script" path="res://global/global.gd" id="1_aof6r"]
+[ext_resource type="Shader" path="res://shaders/sky.gdshader" id="2_qwir6"]
+
+[sub_resource type="Gradient" id="Gradient_bhhl3"]
+offsets = PackedFloat32Array(0, 0.460396, 1)
+colors = PackedColorArray(0.0727925, 1.44392e-07, 0.429046, 1, 0.505882, 0.00392157, 1, 1, 1, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xug46"]
+gradient = SubResource("Gradient_bhhl3")
+width = 16
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dy4bp"]
+shader = ExtResource("2_qwir6")
+shader_parameter/sky_gradient = SubResource("GradientTexture1D_xug46")
+
+[sub_resource type="Sky" id="Sky_icxsg"]
+sky_material = SubResource("ShaderMaterial_dy4bp")
 
 [sub_resource type="Environment" id="Environment_ylnjw"]
-background_mode = 1
+background_mode = 2
+sky = SubResource("Sky_icxsg")
 ambient_light_source = 2
 ambient_light_color = Color(0.444203, 0.392316, 0.605944, 1)
 glow_enabled = true
@@ -11,6 +28,9 @@ glow_bloom = 0.5
 
 [node name="Global" type="Node"]
 script = ExtResource("1_aof6r")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 0)
 
 [node name="EnviormentPreset" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ylnjw")

@@ -76,12 +76,13 @@ func make_haker_stuf(hack_name : String) -> void:
 	else:
 		$deny_hack.play()
 
-@export var health : int = 50 :
+@export var health : int = 100 :
 	get():
 		return health
 	set(value):
 		health = value
-		$hud/VBoxContainer/healthBar.value = value
+		if $hud/VBoxContainer/healthBar != null:
+			$hud/VBoxContainer/healthBar.value = value
 
 enum PowerUpTypes {
 	none = 0,
@@ -107,6 +108,8 @@ func disable_power_up() -> void:
 
 
 func _ready() -> void:
+	
+	health = health
 	
 	Global.player = self
 	

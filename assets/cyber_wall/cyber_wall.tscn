@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://cm7jqa33gilcd"]
+
+[ext_resource type="Script" path="res://assets/cyber_wall/cyber_wall.gd" id="1_60at6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_acov0"]
+resource_local_to_scene = true
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+
+[sub_resource type="Curve" id="Curve_gaicd"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.00229358, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_31dvt"]
+curve = SubResource("Curve_gaicd")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ne7sd"]
+resource_local_to_scene = true
+emission_shape = 3
+emission_box_extents = Vector3(5, 5, 0.1)
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_max = 1.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.1
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_31dvt")
+
+[sub_resource type="BoxMesh" id="BoxMesh_fsygy"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_j6jsk"]
+size = Vector3(10, 10, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ve4w5"]
+resource_local_to_scene = true
+albedo_color = Color(0.404527, 0.0568974, 0.612552, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rvyii"]
+size = Vector3(10, 10, 0.25)
+
+[node name="CyberWall" type="Node3D"]
+script = ExtResource("1_60at6")
+color = Color(0.53937, 0.0758632, 0.816736, 1)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+material_override = SubResource("StandardMaterial3D_acov0")
+amount = 512
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_ne7sd")
+draw_pass_1 = SubResource("BoxMesh_fsygy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_j6jsk")
+surface_material_override/0 = SubResource("StandardMaterial3D_ve4w5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_rvyii")
