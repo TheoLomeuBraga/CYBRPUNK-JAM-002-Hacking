@@ -29,6 +29,7 @@ func _process(delta: float) -> void:
 	for n in targets:
 		if is_instance_valid(n):
 			should_open = false
+			break
 	
 	if should_open and closed:
 		open()

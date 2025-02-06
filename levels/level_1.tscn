@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cbraj0xfqg5gi"]
+[gd_scene load_steps=45 format=3 uid="uid://cbraj0xfqg5gi"]
 
 [ext_resource type="PackedScene" uid="uid://801dg8820s8q" path="res://charter/NetGuner.tscn" id="1_3qvgf"]
 [ext_resource type="AudioStream" uid="uid://tuorkadfjavn" path="res://musics/main_ost.wav.ogg" id="1_rplp8"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cekkdbv72wq6d" path="res://assets/heal_dispenser/heal_dispenser.tscn" id="9_mgfek"]
 [ext_resource type="PackedScene" uid="uid://chf8byyu42esr" path="res://assets/ram/ram_pick_up.tscn" id="10_5sj65"]
 [ext_resource type="Script" path="res://levels/you_won.gd" id="11_c3580"]
+[ext_resource type="AudioStream" uid="uid://n32p8e0lglsm" path="res://sfx/mixkit-retro-game-notification-212.wav" id="12_v2tv4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_p0plm"]
 size = Vector3(10, 10, 10)
@@ -187,6 +188,23 @@ albedo_color = Color(0.314316, 0.314316, 0.314316, 1)
 [sub_resource type="CylinderMesh" id="CylinderMesh_2ykgm"]
 material = SubResource("StandardMaterial3D_0ffy3")
 top_radius = 0.1
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xv8wb"]
+direction = Vector3(0, 1, 0)
+initial_velocity_max = 10.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v5r0i"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.286275, 1, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_pspss"]
+material = SubResource("StandardMaterial3D_v5r0i")
+radius = 0.1
+height = 0.2
+radial_segments = 4
+rings = 1
 
 [node name="Level1" type="Node3D"]
 
@@ -570,5 +588,32 @@ mesh = SubResource("CylinderMesh_2ykgm")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="you_won/MeshInstance3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 256
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xv8wb")
+draw_pass_1 = SubResource("SphereMesh_pspss")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="you_won/MeshInstance3D"]
+stream = ExtResource("12_v2tv4")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="you_won"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.42605, 57)
+mesh = SubResource("CylinderMesh_2ykgm")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="you_won/MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+emitting = false
+amount = 256
+lifetime = 10.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_xv8wb")
+draw_pass_1 = SubResource("SphereMesh_pspss")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="you_won/MeshInstance3D2"]
+stream = ExtResource("12_v2tv4")
 
 [connection signal="body_entered" from="you_won/Area3D" to="you_won" method="_on_area_3d_body_entered"]
