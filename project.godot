@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Arbitrary malware execution"
+config/name="Arbitrary Malware Execution"
 run/main_scene="res://tutorial/tutorialLevel.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
